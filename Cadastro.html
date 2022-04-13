@@ -45,10 +45,10 @@
     </datalist>
 
     <datalist id="lad">
-        <option>Direita p/dentro</option>
-        <option>Esquerda p/dentro</option>
-        <option>Direita p/fora</option>
-        <option>Esquerda p/fora</option>
+        <option>DIREITA P/DENTRO</option>
+        <option>ESQUERDA P/DENTRO</option>
+        <option>DIREITA P/FORA</option>
+        <option>ESQUERDA P/FORA</option>
     </datalist>
 
     <div id="medida">
@@ -56,7 +56,93 @@
             Modelo <input type="text" list="mod" name="modelo"><br>
             Largura <input type="text" list="lag" name="largura"><br>
             Altura <input type="text" list="alt" name="altura"><br>
-            Lado e Sentido<input type="text" list="lad" name="lado"><br>
+            Lado e Sentido d/abertura<input type="text" list="lad" name="lado"><br>
+        </form>
+    </div><hr>
+
+
+    <datalist id="ladin">
+        <option>PVC BRANCO</option>
+        <option>PVC CINZA</option>
+        <option>MDF CRÚ</option>
+        <option>PREPARADO P/PINTURA</option>
+        <option>FORMICA TX NOGAL</option>
+        <option>CURROPIXÁ</option>
+    </datalist>
+
+    <datalist id="ladex">
+        <option>PVC BRANCO</option>
+        <option>PVC CINZA</option>
+        <option>MDF CRÚ</option>
+        <option>PREPARADO P/PINTURA</option>
+        <option>FORMICA TX NOGAL</option>
+        <option>CURROPIXÁ</option>
+    </datalist>
+
+    <div id="acabamento">
+        <form action="" method="POST">
+            Acabamento Interno <input type="text" list="ladin" name="acabint"><br>
+            Acabamento Externo<input type="text" list="ladex" name="acabext"><br>
+        </form>
+    </div><hr>
+
+
+    <datalist id="ferragens">
+        <option>KIT FERRAGENS CR MxF</option>
+        <option>KIT FERRAGENS CR MxM</option>
+        <option>KIT FERRAGENS CRA MxF</option>
+        <option>KIT FERRAGENS CRA MxM</option>
+        <option>KIT ESPELHO TELEFONIA</option>
+    </datalist>
+
+    <datalist id="cilindro">
+        <option>CIL 76 P.113</option>
+        <option>CIL 76 P.236S COM 5 CHAVES</option>
+        <option>CIL 81 P.236S COM 5 CHAVES</option>
+        <option>CIL ENTR 70 P.236S COM 1 CHAVE</option>
+        <option>CIL ENTR 73 P.236S COM 1 CHAVE</option>
+    </datalist>
+
+    <div id="kits">
+        <form action="" method="POST">
+            Ferragens <input type="text" list="ferragens" name="ferragens"><br>
+            Cilindro Principal <input type="text" list="cilindro" name="cilindrop"><br>
+            Cilindro Secundário <input type="text" list="cilindro" name="cilindros"><br>
+        </form>
+    </div><hr><hr>
+
+
+    <datalist id="servico">
+        <option>CARTÃO</option>
+        <option>UNIFICAÇÃO</option>
+        <option>MESTRAGEM</option>
+    </datalist>
+
+    <div id="master">
+        <form action="" method="POST">
+            Tipo de Serviço <input type="text" list="servico" name="servico"><br>
+            Quantidade de Chaves <input type="text" name="numero"><br>
+            Observação <input type="text" name="obs"><br>
+        </form>
+    </div><hr>
+
+
+    <datalist id="esch">
+        <option>Sim</option>
+        <option>Não</option>
+    </datalist>
+
+    <datalist id="fechadura">
+        <option>FECHADURA TRI-LOCK S/CILINDRO</option>
+        <option>FECHADURA M70</option>
+    </datalist>
+
+    <div id="complementos">
+        <form action="" method="POST">
+            <u><h3>Complementos</h3></u>
+            Olho Mágico <input type="text" list="esch" name="olho">
+            <input type="text"><br>
+            <input type="text" list="fechadura" name="fechadurad">
         </form>
     </div>
 </body>
