@@ -132,17 +132,82 @@
         <option>Não</option>
     </datalist>
 
+    <datalist id="oalt">
+        <option>1500mm</option>
+    </datalist>
+
     <datalist id="fechadura">
         <option>FECHADURA TRI-LOCK S/CILINDRO</option>
         <option>FECHADURA M70</option>
+    </datalist>
+
+    <datalist id="calco">
+        <option>CALÇO DE 01 a 03mm</option>
+        <option>CALÇO DE 04 a 08mm</option>
+        <option>CALÇO DE 09 a 12mm</option>
+    </datalist>
+
+    <datalist id="barra">
+        <option>BARRA ANTIPANICO DORMA</option>
+        <option>BARRA ANTIPANICO TEKIN</option>
+    </datalist>
+
+    <datalist id="manual">
+        <option>MANUAL DE INSTALAÇÃO DA PORTA</option>
+        <option>MANUAL DE INSTALAÇÃO DA PORTA 463</option>
     </datalist>
 
     <div id="complementos">
         <form action="" method="POST">
             <u><h3>Complementos</h3></u>
             Olho Mágico <input type="text" list="esch" name="olho">
-            <input type="text"><br>
-            <input type="text" list="fechadura" name="fechadurad">
+            <input type="text" list="oalt" name="oalt"><br>
+            Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
+            Barra Antipanico <input type="text" list="barra" name="barra"><br>
+            Coluna Central <input type="text" list="esch" name="coluna"><br>
+            Manual da Porta <input type="text" list="manual" name="manual">
+        </form>
+        <form action="" method="POST">
+            <u><h4>Sistema Entr</h4></u>
+            Fechadura Entr <input type="text" list="esch" name="entr"><br>
+            Calço <input type="text" list="calco" name="calco"><br>
+            Biometria <input type="text" list="esch" name="biometria"><br>
+            Teclado <input type="text" list="esch" name="digital"><br>
+        </form>
+    </div><hr>
+
+
+    <datalist id="plasticos">
+        <option>BRANCO</option>
+        <option>CINZA</option>
+        <option>MARROM</option>
+    </datalist>
+
+    <div id="plasticos">
+        <form action="" method="POST">
+            <u><h3>Plasticos</h3></u>
+            Perfil <input type="text" list="plasticos" name="perfil"><br>
+            Kit de Capa da Dobradiça <input type="text" list="plasticos" name="capadobri"><br>
+            Borracha de Vedação <input type="text" list="plasticos" nama="borracha"><br>
+        </form>
+    </div><hr><hr>
+
+
+    <datalist id="tipo">
+        <option>MANTA</option>
+        <option>CAIXA DE MADEIRA</option>
+    </datalist>
+
+    <datalist id="caixa">
+        <option>caixa 1</option>
+        <option>caixa 2</option>
+    </datalist>
+
+    <div id="embalagem">
+        <form action="" method="POST">
+            <u><h3>Embalagens</h3></u>
+            Embalagem <input type="text" list="tipo" name="tipoem"><br>
+            Caixa de Madeira<input type="text" disabled list="caixa" name="tamem"><br>
         </form>
     </div>
 </body>
