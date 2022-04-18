@@ -53,6 +53,7 @@
 
     <div id="medida">
         <form action="" method="POST">
+            <u><h3>Medidas</h3></u>
             Modelo <input type="text" list="mod" name="modelo"><br>
             Largura <input type="text" list="lag" name="largura"><br>
             Altura <input type="text" list="alt" name="altura"><br>
@@ -81,6 +82,7 @@
 
     <div id="acabamento">
         <form action="" method="POST">
+            <u><h3>Acabamento</h3></u>
             Acabamento Interno <input type="text" list="ladin" name="acabint"><br>
             Acabamento Externo<input type="text" list="ladex" name="acabext"><br>
         </form>
@@ -105,6 +107,7 @@
 
     <div id="kits">
         <form action="" method="POST">
+            <u><h3>Kits</h3></u>
             Ferragens <input type="text" list="ferragens" name="ferragens"><br>
             Cilindro Principal <input type="text" list="cilindro" name="cilindrop"><br>
             Cilindro Secundário <input type="text" list="cilindro" name="cilindros"><br>
@@ -120,6 +123,7 @@
 
     <div id="master">
         <form action="" method="POST">
+            <u><h3>Master Key</h3></u>
             Tipo de Serviço <input type="text" list="servico" name="servico"><br>
             Quantidade de Chaves <input type="text" name="numero"><br>
             Observação <input type="text" name="obs"><br>
@@ -199,8 +203,8 @@
     </datalist>
 
     <datalist id="caixa">
-        <option>caixa 1</option>
-        <option>caixa 2</option>
+        <option>CAIXA DE MADEIRA 250x1230X2250</option>
+        <option>CAIXA DE MADEIRA 250x1550X2250</option>
     </datalist>
 
     <div id="embalagem">
@@ -208,6 +212,21 @@
             <u><h3>Embalagens</h3></u>
             Embalagem <input type="text" list="tipo" name="tipoem"><br>
             Caixa de Madeira<input type="text" disabled list="caixa" name="tamem"><br>
+        </form>
+    </div><hr>
+
+
+    <datalist id="sup">
+        <option>120</option>
+        <option>150</option>
+    </datalist>
+
+    <div id="bat">
+        <form action="" method="POST">
+            <u><h3>Batente</h3></u>
+            Laterais <br>
+            Superior <input type="text" list="sup" name="superior"><br>
+            Lado 
         </form>
     </div>
 </body>
