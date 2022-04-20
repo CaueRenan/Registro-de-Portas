@@ -8,14 +8,14 @@
 </head>
 <body>
     <div id="nome">
-        <input type="text" placeholder="NOME DO CLIENTE">
+        <input type="text" placeholder="NOME DO CLIENTE" name="nome_cliente">
     </div>
     <div id="dados">
         <form action="" method="POST">
-            <input type="text" placeholder="TALÃO">
-            Data de Entrada <input type="date"><br>
+            <input type="text" placeholder="TALÃO" name="talao">
+            Data de Entrada <input type="date" name="data_entrada"><br>
             <input type="text" placeholder="MICROSIGA">
-            Data de Previsão <input type="date" >
+            Data de Previsão <input type="date" name="data_previsao">
         </form>
     </div><hr>
 
@@ -109,8 +109,8 @@
         <form action="" method="POST">
             <u><h3>Kits</h3></u>
             Ferragens <input type="text" list="ferragens" name="ferragens"><br>
-            Cilindro Principal <input type="text" list="cilindro" name="cilindrop"><br>
-            Cilindro Secundário <input type="text" list="cilindro" name="cilindros"><br>
+            Cilindro Principal <input type="text" list="cilindro" name="cilindroP"><br>
+            Cilindro Secundário <input type="text" list="cilindro" name="cilindroS"><br>
         </form>
     </div><hr><hr>
 
@@ -126,7 +126,7 @@
             <u><h3>Master Key</h3></u>
             Tipo de Serviço <input type="text" list="servico" name="servico"><br>
             Quantidade de Chaves <input type="text" name="numero"><br>
-            Observação <input type="text" name="obs"><br>
+            Observação <input type="text" name="obsmk"><br>
         </form>
     </div><hr>
 
@@ -216,7 +216,7 @@
     </div><hr>
 
 
-    <datalist id="sup">
+    <datalist id="lb">
         <option>120</option>
         <option>150</option>
     </datalist>
@@ -225,8 +225,16 @@
         <form action="" method="POST">
             <u><h3>Batente</h3></u>
             Laterais <br>
-            Superior <input type="text" list="sup" name="superior"><br>
-            Lado 
+            Superior <br>
+            Lado <br>
+            Largura do Batente <input type="text" list="lb" name="lag_bat">
+        </form>
+    </div>
+
+
+    <div id="obs">
+        <form action="" method="POST">
+            <input type="text" name="obs">
         </form>
     </div>
 </body>
