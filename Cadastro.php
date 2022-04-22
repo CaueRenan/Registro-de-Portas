@@ -1,3 +1,61 @@
+<?php
+if(isset($_POST['submit'])){
+
+    include_once("conexão.php");
+
+    $nome_cliente = $_POST["nome_cliente"];
+    $talao = $_POST["talao"];
+    $data_entrada = $_POST["data_entrada"];
+    $data_previsao = $_POST["data_previsao"];
+
+    $modelo = $_POST["modelo"];
+    $largura = $_POST["largura"];
+    $altura = $_POST["altura"];
+    $lado = $_POST["lado"];
+
+    $acabint = $_POST["acabint"];
+    $acabext = $_POST["acabext"];
+
+    $ferragens = $_POST["ferragens"];
+    $cilindroP = $_POST["cilindroP"];
+    $cilindroS = $_POST["cilindroS"];
+
+    $servico = $_POST["servico"];
+    $numero = $_POST["numero"];
+    $obsmk = $_POST["obsmk"];
+
+    $olho = $_POST["olho"];
+    $oalt = $_POST["oalt"];
+    $fechadurad = $_POST["fechadurad"];
+    $barra = $_POST["barra"];
+    $coluna = $_POST["coluna"];
+    $manual = $_POST["manuall"];
+
+    $entr = $_POST["entr"];
+    $calco = $_POST["calco"];
+    $biometria = $_POST["biometria"];
+    $digital = $_POST["digital"];
+
+    $perfil = $_POST["perfil"];
+    $capadobri = $_POST["capadobri"];
+    $borracha = $_POST["borracha"];
+
+    $tipoem = $_POST["tipoem"];
+    $tamem = $_POST["tamem"];
+
+    $lag_bat = $_POST["lag_bat"];
+
+    $obs = $_POST["obs"];
+
+    $resultado = mysqli_query($conexao, "INSERT INTO registro (nome_cliente,talao,data_entrada,data_previsao,modelo,largura,altura,lado,acabint,
+    acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,oalt,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,perfil,
+    capadobri,borracha,tipoem,tamem,lag_bat,obs) VALUES('$nome_cliente','$talao$data_entrada','$data_previsao','$modelo','$largura$altura',
+    '$lado$acabint','$acabext$ferragen','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$oalt','$fechadurad','$barra$coluna',
+    '$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$tamem','$lag_bat$obs') ");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -169,7 +227,7 @@
             Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
             Barra Antipanico <input type="text" list="barra" name="barra"><br>
             Coluna Central <input type="text" list="esch" name="coluna"><br>
-            Manual da Porta <input type="text" list="manual" name="manual">
+            Manual da Porta <input type="text" list="manual" name="manuall">
         </form>
         <form action="" method="POST">
             <u><h4>Sistema Entr</h4></u>
@@ -234,8 +292,12 @@
 
     <div id="obs">
         <form action="" method="POST">
-            <input type="text" name="obs">
+            Observação <input type="text" name="obs">
         </form>
-    </div>
+    </div><br>
+
+    <a href="Pesquisa.html">
+        <button type="submit" >Cadastra</button>
+    </a>
 </body>
 </html>
