@@ -25,7 +25,6 @@ if(isset($_POST['submit'])){
     $obsmk = $_POST["obsmk"];
 
     $olho = $_POST["olho"];
-    $oalt = $_POST["oalt"];
     $fechadurad = $_POST["fechadurad"];
     $barra = $_POST["barra"];
     $coluna = $_POST["coluna"];
@@ -48,9 +47,9 @@ if(isset($_POST['submit'])){
     $obs = $_POST["obs"];
 
     $resultado = mysqli_query($conexao, "INSERT INTO registro (nome_cliente,talao,data_entrada,data_previsao,modelo,largura,altura,lado,acabint,
-    acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,oalt,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,perfil,
+    acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,perfil,
     capadobri,borracha,tipoem,tamem,lag_bat,obs) VALUES('$nome_cliente','$talao$data_entrada','$data_previsao','$modelo','$largura$altura',
-    '$lado$acabint','$acabext$ferragen','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$oalt','$fechadurad','$barra$coluna',
+    '$lado$acabint','$acabext$ferragen','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$fechadurad','$barra$coluna',
     '$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$tamem','$lag_bat$obs') ");
 }
 ?>
@@ -222,8 +221,7 @@ if(isset($_POST['submit'])){
     <div id="complementos">
         <form action="" method="POST">
             <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="esch" name="olho">
-            <input type="text" list="oalt" name="oalt"><br>
+            Olho Mágico <input type="text" list="oalt" name="olho"><br>
             Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
             Barra Antipanico <input type="text" list="barra" name="barra"><br>
             Coluna Central <input type="text" list="esch" name="coluna"><br>
