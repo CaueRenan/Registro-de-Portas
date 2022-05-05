@@ -1,10 +1,12 @@
 <?php
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']))
+{
 
     include_once("conexão.php");
 
     $nome_cliente = $_POST["nome_cliente"];
     $talao = $_POST["talao"];
+    $microsiga = $_POST["microsiga"];
     $data_entrada = $_POST["data_entrada"];
     $data_previsao = $_POST["data_previsao"];
 
@@ -12,6 +14,7 @@ if(isset($_POST['submit'])){
     $largura = $_POST["largura"];
     $altura = $_POST["altura"];
     $lado = $_POST["lado"];
+    $sentido = $_POST["sentido"];
 
     $acabint = $_POST["acabint"];
     $acabext = $_POST["acabext"];
@@ -46,11 +49,11 @@ if(isset($_POST['submit'])){
 
     $obs = $_POST["obs"];
 
-    $resultado = mysqli_query($conexao, "INSERT INTO registro (nome_cliente,talao,data_entrada,data_previsao,modelo,largura,altura,lado,acabint,
-    acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,perfil,
-    capadobri,borracha,tipoem,tamem,lag_bat,obs) VALUES('$nome_cliente','$talao$data_entrada','$data_previsao','$modelo','$largura$altura',
-    '$lado$acabint','$acabext$ferragen','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$fechadurad','$barra$coluna',
-    '$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$tamem','$lag_bat$obs') ");
+    $resultado = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
+    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,
+    perfil,capadobri,borracha,tipoem,tamem,lag_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada','$data_previsao','$modelo',
+    '$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$fechadurad',
+    '$barra','$coluna','$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$tamem','$lag_bat','$obs')");
 }
 ?>
 
@@ -64,19 +67,6 @@ if(isset($_POST['submit'])){
     <title>Cadastro</title>
 </head>
 <body>
-    <div id="nome">
-        <input type="text" placeholder="NOME DO CLIENTE" name="nome_cliente">
-    </div>
-    <div id="dados">
-        <form action="" method="POST">
-            <input type="text" placeholder="TALÃO" name="talao">
-            Data de Entrada <input type="date" name="data_entrada"><br>
-            <input type="text" placeholder="MICROSIGA">
-            Data de Previsão <input type="date" name="data_previsao">
-        </form>
-    </div><hr>
-
-
     <datalist id="mod">
         <option>Telefonia</option>
         <option>TelAlvenaria</option>
@@ -102,21 +92,14 @@ if(isset($_POST['submit'])){
     </datalist>
 
     <datalist id="lad">
-        <option>DIREITA P/DENTRO</option>
-        <option>ESQUERDA P/DENTRO</option>
-        <option>DIREITA P/FORA</option>
-        <option>ESQUERDA P/FORA</option>
+        <option>DIREITA</option>
+        <option>ESQUERDA</option>
     </datalist>
 
-    <div id="medida">
-        <form action="" method="POST">
-            <u><h3>Medidas</h3></u>
-            Modelo <input type="text" list="mod" name="modelo"><br>
-            Largura <input type="text" list="lag" name="largura"><br>
-            Altura <input type="text" list="alt" name="altura"><br>
-            Lado e Sentido d/abertura<input type="text" list="lad" name="lado"><br>
-        </form>
-    </div><hr>
+    <datalist id="sent">
+        <option>FORA</option>
+        <option>DENTRO</option>
+    </datalist>
 
 
     <datalist id="ladin">
@@ -137,14 +120,6 @@ if(isset($_POST['submit'])){
         <option>CURROPIXÁ</option>
     </datalist>
 
-    <div id="acabamento">
-        <form action="" method="POST">
-            <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" list="ladin" name="acabint"><br>
-            Acabamento Externo<input type="text" list="ladex" name="acabext"><br>
-        </form>
-    </div><hr>
-
 
     <datalist id="ferragens">
         <option>KIT FERRAGENS CR MxF</option>
@@ -162,30 +137,12 @@ if(isset($_POST['submit'])){
         <option>CIL ENTR 73 P.236S COM 1 CHAVE</option>
     </datalist>
 
-    <div id="kits">
-        <form action="" method="POST">
-            <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" name="ferragens"><br>
-            Cilindro Principal <input type="text" list="cilindro" name="cilindroP"><br>
-            Cilindro Secundário <input type="text" list="cilindro" name="cilindroS"><br>
-        </form>
-    </div><hr><hr>
-
 
     <datalist id="servico">
         <option>CARTÃO</option>
         <option>UNIFICAÇÃO</option>
         <option>MESTRAGEM</option>
     </datalist>
-
-    <div id="master">
-        <form action="" method="POST">
-            <u><h3>Master Key</h3></u>
-            Tipo de Serviço <input type="text" list="servico" name="servico"><br>
-            Quantidade de Chaves <input type="text" name="numero"><br>
-            Observação <input type="text" name="obsmk"><br>
-        </form>
-    </div><hr>
 
 
     <datalist id="esch">
@@ -196,6 +153,7 @@ if(isset($_POST['submit'])){
     <datalist id="oalt">
         <option>1500mm</option>
     </datalist>
+
 
     <datalist id="fechadura">
         <option>FECHADURA TRI-LOCK S/CILINDRO</option>
@@ -218,39 +176,12 @@ if(isset($_POST['submit'])){
         <option>MANUAL DE INSTALAÇÃO DA PORTA 463</option>
     </datalist>
 
-    <div id="complementos">
-        <form action="" method="POST">
-            <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="oalt" name="olho"><br>
-            Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
-            Barra Antipanico <input type="text" list="barra" name="barra"><br>
-            Coluna Central <input type="text" list="esch" name="coluna"><br>
-            Manual da Porta <input type="text" list="manual" name="manuall">
-        </form>
-        <form action="" method="POST">
-            <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="esch" name="entr"><br>
-            Calço <input type="text" list="calco" name="calco"><br>
-            Biometria <input type="text" list="esch" name="biometria"><br>
-            Teclado <input type="text" list="esch" name="digital"><br>
-        </form>
-    </div><hr>
-
 
     <datalist id="plasticos">
         <option>BRANCO</option>
         <option>CINZA</option>
         <option>MARROM</option>
     </datalist>
-
-    <div id="plasticos">
-        <form action="" method="POST">
-            <u><h3>Plasticos</h3></u>
-            Perfil <input type="text" list="plasticos" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticos" name="capadobri"><br>
-            Borracha de Vedação <input type="text" list="plasticos" nama="borracha"><br>
-        </form>
-    </div><hr><hr>
 
 
     <datalist id="tipo">
@@ -263,39 +194,96 @@ if(isset($_POST['submit'])){
         <option>CAIXA DE MADEIRA 250x1550X2250</option>
     </datalist>
 
-    <div id="embalagem">
-        <form action="" method="POST">
-            <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" name="tipoem"><br>
-            Caixa de Madeira<input type="text" disabled list="caixa" name="tamem"><br>
-        </form>
-    </div><hr>
-
 
     <datalist id="lb">
         <option>120</option>
         <option>150</option>
     </datalist>
 
-    <div id="bat">
-        <form action="" method="POST">
+
+    <form action="Cadastro.php" method="POST">
+        <div id="nome">
+            <input type="text" placeholder="NOME DO CLIENTE" name="nome_cliente">
+        </div>
+
+        <div id="dados">
+            <input type="text" placeholder="TALÃO" name="talao">
+            Data de Entrada <input type="date" name="data_entrada"><br>
+            <input type="text" placeholder="MICROSIGA" name="microsiga">
+            Data de Previsão <input type="date" name="data_previsao">
+        </div><hr>
+
+        <div id="medida">
+            <u><h3>Medidas</h3></u>
+            Modelo <input type="text" list="mod" name="modelo"><br>
+            Largura <input type="text" list="lag" name="largura"><br>
+            Altura <input type="text" list="alt" name="altura"><br>
+            Lado de abertura <input type="text" list="lad" name="lado"><br>
+            Sentido de abertura<input type="text" list="sent" name="sentido">
+        </div><hr>
+
+        <div id="acabamento">
+            <u><h3>Acabamento</h3></u>
+            Acabamento Interno <input type="text" list="ladin" name="acabint"><br>
+            Acabamento Externo <input type="text" list="ladex" name="acabext"><br>
+        </div><hr>
+
+        <div id="kits">
+            <u><h3>Kits</h3></u>
+            Ferragens <input type="text" list="ferragens" name="ferragens"><br>
+            Cilindro Principal <input type="text" list="cilindro" name="cilindroP"><br>
+            Cilindro Secundário <input type="text" list="cilindro" name="cilindroS"><br>
+        </div><hr><hr>
+
+        <div id="master">
+            <u><h3>Master Key</h3></u>
+            Tipo de Serviço <input type="text" list="servico" name="servico"><br>
+            Quantidade de Chaves <input type="text" name="numero"><br>
+            Observação <input type="text" name="obsmk"><br>
+        </div><hr>
+
+        <div id="complementos">
+            <u><h3>Complementos</h3></u>
+            Olho Mágico <input type="text" list="oalt" name="olho"><br>
+            Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
+            Barra Antipanico <input type="text" list="barra" name="barra"><br>
+            Coluna Central <input type="text" list="esch" name="coluna"><br>
+            Manual da Porta <input type="text" list="manual" name="manuall">
+            
+            
+            <u><h4>Sistema Entr</h4></u>
+            Fechadura Entr <input type="text" list="esch" name="entr"><br>
+            Calço <input type="text" list="calco" name="calco"><br>
+            Biometria <input type="text" list="esch" name="biometria"><br>
+            Teclado <input type="text" list="esch" name="digital"><br>
+        </div><hr>
+
+        <div id="plasticos">
+            <u><h3>Plasticos</h3></u>
+            Perfil <input type="text" list="plasticos" name="perfil"><br>
+            Kit de Capa da Dobradiça <input type="text" list="plasticos" name="capadobri"><br>
+            Borracha de Vedação <input type="text" list="plasticos" name="borracha"><br>
+        </div><hr><hr>
+
+        <div id="embalagem">
+            <u><h3>Embalagens</h3></u>
+            Embalagem <input type="text" list="tipo" name="tipoem"><br>
+            Caixa de Madeira<input type="text" list="caixa" name="tamem"><br>
+        </div><hr>
+
+        <div id="bat">
             <u><h3>Batente</h3></u>
             Laterais <br>
             Superior <br>
             Lado <br>
             Largura do Batente <input type="text" list="lb" name="lag_bat">
-        </form>
-    </div>
+        </div>
 
-
-    <div id="obs">
-        <form action="" method="POST">
+        <div id="obs">
             Observação <input type="text" name="obs">
-        </form>
-    </div><br>
+        </div><br>
 
-    <a href="Pesquisa.html">
-        <button type="submit" >Cadastra</button>
-    </a>
+        <button type="submit" name="submit" id="botoes" >Cadastrar</button>
+    </form>
 </body>
 </html>
