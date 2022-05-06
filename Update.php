@@ -54,7 +54,7 @@ if(isset($_POST['update'])){
     acabext='$acabext', ferragens='$ferragens', cilindroP='$cilindroP', cilindroS='$cilindroS', servico='$servico', numero='$numero', obsmk='$obsmk',
     olho='$olho', fechadurad='$fechadurad', barra='$barra', coluna='$coluna', manuall='$manuall', entr='$entr', calco='$calco', biometria='$biometria',
     digital='$digital', perfil='$perfil', capadobri='$capadobri', borracha='$borracha', tipoem='$tipoem', tamem='$tamem', lag_bat='$lag_bat', obs='$obs'
-    WHERE id='$id' ";
+    WHERE talao='$id' ";
 
     $result = $conexao->query($up);
 }

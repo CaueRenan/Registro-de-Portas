@@ -1,3 +1,20 @@
+<?php
+if(isset($_POST['imft']) && !empty($_POST['talaoft'])){
+
+    include_once("conexão.php");
+
+    $talaoft = $_POST["talaoft"];
+
+    $verificar = "SELECT * FROM registros WHERE talao = '$talaoft' ";
+    
+    $conec = $conexao->query($verificar);
+
+    if(mysqli_num_rows($conec) < 1){
+        header('Location:Pesquisa.php');
+    }
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

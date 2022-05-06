@@ -1,73 +1,71 @@
 <?php
-if(!empty($_GET["id"]))
+if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 {
     include_once("conexão.php");
 
-    $id = $_GET["id"];
+    $id = $_POST["enedit"];
     
     
-    $consulta = "SELECT * FROM registros WHERE id = '$id' ";
+    $consulta = "SELECT * FROM registros WHERE talao = '$id' ";
 
     $result = $conexao->query($consulta);
     
 
-    if($result->num_rows > 0){
+        if($result->num_rows > 0){
 
-        while($dado = mysqli_fetch_assoc($result)){
+            while($dado = mysqli_fetch_assoc($result)){
 
-            $nome_cliente = $dado["nome_cliente"];
-            $talao = $dado["talao"];
-            $microsiga = $dado["microsiga"];
-            $data_entrada = $dado["data_entrada"];
-            $data_previsao = $dado["data_previsao"];
+                $nome_cliente = $dado["nome_cliente"];
+                $talao = $dado["talao"];
+                $microsiga = $dado["microsiga"];
+                $data_entrada = $dado["data_entrada"];
+                $data_previsao = $dado["data_previsao"];
 
-            $modelo = $dado["modelo"];
-            $largura = $dado["largura"];
-            $altura = $dado["altura"];
-            $lado = $dado["lado"];
-            $sentido = $dado["sentido"];
+                $modelo = $dado["modelo"];
+                $largura = $dado["largura"];
+                $altura = $dado["altura"];
+                $lado = $dado["lado"];
+                $sentido = $dado["sentido"];
 
-            $acabint = $dado["acabint"];
-            $acabext = $dado["acabext"];
+                $acabint = $dado["acabint"];
+                $acabext = $dado["acabext"];
 
-            $ferragens = $dado["ferragens"];
-            $cilindroP = $dado["cilindroP"];
-            $cilindroS = $dado["cilindroS"];
+                $ferragens = $dado["ferragens"];
+                $cilindroP = $dado["cilindroP"];
+                $cilindroS = $dado["cilindroS"];
 
-            $servico = $dado["servico"];
-            $numero = $dado["numero"];
-            $obsmk = $dado["obsmk"];
+                $servico = $dado["servico"];
+                $numero = $dado["numero"];
+                $obsmk = $dado["obsmk"];
 
-            $olho = $dado["olho"];
-            $fechadurad = $dado["fechadurad"];
-            $barra = $dado["barra"];
-            $coluna = $dado["coluna"];
-            $manuall = $dado["manuall"];
+                $olho = $dado["olho"];
+                $fechadurad = $dado["fechadurad"];
+                $barra = $dado["barra"];
+                $coluna = $dado["coluna"];
+                $manuall = $dado["manuall"];
 
-            $entr = $dado["entr"];
-            $calco = $dado["calco"];
-            $biometria = $dado["biometria"];
-            $digital = $dado["digital"];
+                $entr = $dado["entr"];
+                $calco = $dado["calco"];
+                $biometria = $dado["biometria"];
+                $digital = $dado["digital"];
 
-            $perfil = $dado["perfil"];
-            $capadobri = $dado["capadobri"];
-            $borracha = $dado["borracha"];
+                $perfil = $dado["perfil"];
+                $capadobri = $dado["capadobri"];
+                $borracha = $dado["borracha"];
 
-            $tipoem = $dado["tipoem"];
-            $tamem = $dado["tamem"];
+                $tipoem = $dado["tipoem"];
+                $tamem = $dado["tamem"];
 
-            $lag_bat = $dado["lag_bat"];
+                $lag_bat = $dado["lag_bat"];
 
-            $obs = $dado["obs"];
+                $obs = $dado["obs"];
 
-        }
+            }
 
-    }
-}
-    else {
-        header('Location:Pesquisa.php');
-        
-    }
+        }else {
+            header('Location:Pesquisa.php'); }
+
+    } 
 ?>
 
 
