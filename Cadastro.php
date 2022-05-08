@@ -43,17 +43,17 @@ if(isset($_POST['submit']))
     $borracha = $_POST["borracha"];
 
     $tipoem = $_POST["tipoem"];
-    $tamem = $_POST["tamem"];
 
     $lag_bat = $_POST["lag_bat"];
+    $tip_bat = $_POST["tip_bat"];
 
     $obs = $_POST["obs"];
 
     $resultado = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
     lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,
-    perfil,capadobri,borracha,tipoem,tamem,lag_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada','$data_previsao','$modelo',
+    perfil,capadobri,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada','$data_previsao','$modelo',
     '$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$fechadurad',
-    '$barra','$coluna','$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$tamem','$lag_bat','$obs')");
+    '$barra','$coluna','$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
 }
 ?>
 
@@ -85,10 +85,6 @@ if(isset($_POST['submit']))
         <option>900</option>
         <option>1000</option>
         <option>1080</option>
-    </datalist>
-
-    <datalist id="alt">
-        <option>2085</option>
     </datalist>
 
     <datalist id="lad">
@@ -186,14 +182,9 @@ if(isset($_POST['submit']))
 
     <datalist id="tipo">
         <option>MANTA</option>
-        <option>CAIXA DE MADEIRA</option>
-    </datalist>
-
-    <datalist id="caixa">
         <option>CAIXA DE MADEIRA 250x1230X2250</option>
         <option>CAIXA DE MADEIRA 250x1550X2250</option>
     </datalist>
-
 
     <datalist id="lb">
         <option>120</option>
@@ -217,7 +208,7 @@ if(isset($_POST['submit']))
             <u><h3>Medidas</h3></u>
             Modelo <input type="text" list="mod" name="modelo"><br>
             Largura <input type="text" list="lag" name="largura"><br>
-            Altura <input type="text" list="alt" name="altura"><br>
+            Altura <input type="text" name="altura" value="2085"><br>
             Lado de abertura <input type="text" list="lad" name="lado"><br>
             Sentido de abertura<input type="text" list="sent" name="sentido">
         </div><hr>
@@ -268,22 +259,21 @@ if(isset($_POST['submit']))
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
             Embalagem <input type="text" list="tipo" name="tipoem"><br>
-            Caixa de Madeira<input type="text" list="caixa" name="tamem"><br>
         </div><hr>
 
         <div id="bat">
             <u><h3>Batente</h3></u>
-            Laterais <br>
-            Superior <br>
+            Laterais<br>
             Lado <br>
-            Largura do Batente <input type="text" list="lb" name="lag_bat">
+            Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
+            Tipo <input type="text" name="tip_bat" value=""><br>
         </div>
 
         <div id="obs">
             Observação <input type="text" name="obs">
         </div><br>
-
-        <button type="submit" name="submit" id="botoes" >Cadastrar</button>
+        
+        <button type="submit"  name="submit" id="botoes" >Cadastrar</button>
     </form>
 </body>
 </html>

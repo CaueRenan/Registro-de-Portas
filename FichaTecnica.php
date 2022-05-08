@@ -35,169 +35,172 @@ if(isset($_POST['imft']) && !empty($_POST['talaoft'])){
 </style>
 <body>
     <table>
-        <tr>
-            <th rowspan="3">FICHA TÉCNICA DE PORTA</th>
-            <th colspan="2">TALÃO</th>
-            <th colspan="2">MICROSIGA</th>
-        </tr>
+        <?php
+            while($dados = mysqli_fetch_assoc($conec)){
+                echo "<tr>";
+                echo "<th rowspan='3'>","FICHA TÉCNICA DE PORTA","</th>";
+                echo "<th colspan='2'>","TALÃO","</th>";
+                echo "<th colspan='2'>","MICROSIGA","</th>";
+                echo "</tr>";
 
-        <tr>
-            <td colspan="2">conteudo</td>
-            <td colspan="2">conteudo</td>
-        </tr>
+                echo "<tr>";
+                echo "<td colspan='2'>".$dados['talao']."</td>";
+                echo "<td colspan='2'>".$dados['microsiga']."</td>";
+                echo "</tr>";
 
-        <tr>
-            <td><b>ENTRADA</b></td>
-            <td>conteudo</td>
-            <td><b>PREVISÃO</b></td>
-            <td>conteudo</td>
-        </tr>
+                echo "<tr>";
+                echo "<td>","<b>ENTRADA</b>","</td>";
+                echo "<td>".date("d/m/y", strtotime($dados['data_entrada']))."</td>";
+                echo "<td>","<b>PREVISÃO</b>","</td>";
+                echo "<td>".date("d/m/y", strtotime($dados['data_previsao']))."</td>";
+                echo "</tr>";
 
-        <tr>
-            <td colspan="6"><b>CLIENTE:</b></td>
-        </tr>
+                echo "<tr>";
+                echo "<td colspan='6'>","<b>CLIENTE: </b>".$dados['nome_cliente']."</td>";
+                echo "</tr>";
 
-        <tr>
-            <th colspan="6">ESPECIFICAÇÕES</th>
-        </tr>
-    </table>
-
-    <table>
-        <tr><th rowspan="5">MEDIDAS</th></tr>
-        <tr>
-            <td>Modelo</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Largura</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Altura</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Sentido de Abertura</td>
-            <td>conteudo</td>
-        </tr>
-
-        <tr><th rowspan="3">ACABAMENTO</th></tr>
-        <tr>
-            <td>Lado interno</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Lado externo</td>
-            <td>conteudo</td>
-        </tr>
+                echo "<tr>";
+                echo "<th colspan='6'>","ESPECIFICAÇÕES","</th>";
+                echo "</tr>";
+            
         
-        <tr><th rowspan="9">COMPLEMENTOS</th></tr>
-        <tr>
-            <td>Olho Mágico</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Fechadura Adicional</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Fechadura Entr</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Calço</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Biometria</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Teclado</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Barra Antipanico</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Coluna Central</td>
-            <td>conteudo</td>
-        </tr>
+    echo "</table>";
 
-        <tr><th rowspan="4">KITS</th></tr>
-        <tr>
-            <td>Ferragens</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Cilindro Principal</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Cilindro Secundario</td>
-            <td>conteudo</td>
-        </tr>
+    echo "<table>";
+            echo "<tr>","<th rowspan='5'>","MEDIDAS","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Modelo","</td>";
+            echo "<td>".$dados['modelo']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Largura","</td>";
+            echo "<td>".$dados['largura']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Altura","</td>";
+            echo "<td>".$dados['altura']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Sentido de Abertura","</td>";
+            echo "<td>".$dados['lado']."/".$dados['sentido']."</td>";
+            echo "</tr>";
 
-        <tr><th rowspan="4">MASTER KEY</th></tr>
-        <tr>
-            <td>Tipo De Serviço</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Quantidades de Chaves</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Observações</td>
-            <td>conteudo</td>
-        </tr>
+            echo "<tr>","<th rowspan='3'>","ACABAMENTO","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Lado interno","</td>";
+            echo "<td>".$dados['acabint']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Lado externo","</td>";
+            echo "<td>".$dados['acabext']."</td>";
+            echo "</tr>";
+            
+            echo "<tr>","<th rowspan='9'>","COMPLEMENTOS","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Olho Mágico","</td>";
+            echo "<td>".$dados['olho']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Fechadura Adicional","</td>";
+            echo "<td>".$dados['fechadurad']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Fechadura Entr","</td>";
+            echo "<td>".$dados['entr']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Calço","</td>";
+            echo "<td>".$dados['calco']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Biometria","</td>";
+            echo "<td>".$dados['biometria']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Teclado","</td>";
+            echo "<td>".$dados['digital']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Barra Antipanico","</td>";
+            echo "<td>".$dados['barra']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Coluna Central","</td>";
+            echo "<td>".$dados['coluna']."</td>";
+            echo "</tr>";
 
-        <tr><th rowspan="4">PLASTICOS</th></tr>
-        <tr>
-            <td>Perfil</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Capa de Dobradiça</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Borracha</td>
-            <td>conteudo</td>
-        </tr>
+            echo "<tr>","<th rowspan='4'>","KITS","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Ferragens","</td>";
+            echo "<td>".$dados['ferragens']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Cilindro Principal","</td>";
+            echo "<td>".$dados['cilindroP']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Cilindro Secundario","</td>";
+            echo "<td>".$dados['cilindroS']."</td>";
+            echo "</tr>";
 
-        <tr><th rowspan="2">EMBALAGEM</th></tr>
-        <tr>
-            <td>Tipo de Embalagem</td>
-            <td>conteudo</td>
-        </tr>
+            echo "<tr>","<th rowspan='4'>","MASTER KEY","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Tipo De Serviço","</td>";
+            echo "<td>".$dados['servico']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Quantidades de Chaves","</td>";
+            echo "<td>".$dados['numero']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Observações","</td>";
+            echo "<td>".$dados['obsmk']."</td>";
+            echo "</tr>";
 
-        <tr><th rowspan="6">BATENTE</th></tr>
-        <tr>
-            <td>Superior</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Laterais</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Largura</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Lado</td>
-            <td>conteudo</td>
-        </tr>
-        <tr>
-            <td>Tipo</td>
-            <td>conteudo</td>
+            echo "<tr>","<th rowspan='4'>","PLASTICOS","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Perfil","</td>";
+            echo "<td>".$dados['perfil']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Capa de Dobradiça","</td>";
+            echo "<td>".$dados['capadobri']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo " <td>","Borracha","</td>";
+            echo "<td>".$dados['borracha']."</td>";
+            echo "</tr>";
 
-        <tr><th colspan="3">OBSERVAÇÕES</th></tr>
-        <tr>
-            <td colspan="3">conteudo</td>
-        </tr>
-    </table>
+            echo "<tr>","<th rowspan='2'>","EMBALAGEM","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Tipo de Embalagem","</td>";
+            echo "<td>".$dados['tipoem']."</td>";
+            echo "</tr>";
+
+            echo "<tr>","<th rowspan='6'>","BATENTE","</th>","</tr>";
+            echo "<tr>";
+            echo "<td>","Superior","</td>";
+            echo "<td>".$dados['lag_bat']. "x" .$dados['largura']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Laterais","</td>";
+            echo "<td>".$dados['altura']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Lado","</td>";
+            echo "<td>".$dados['lado']."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>","Tipo","</td>";
+            echo "<td>".$dados['tip_bat']."</td>";
+
+            echo "<tr>","<th colspan='3'>","OBSERVAÇÕES","</th>","</tr>";
+            echo "<tr>";
+            echo "<td colspan='3'>".$dados['obs']."</td>";
+            echo "</tr>";
+        
+    echo "</table>";
+    }
+    ?>
 </body>
 </html>

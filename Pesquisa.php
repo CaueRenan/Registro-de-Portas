@@ -34,7 +34,7 @@ $verificar = mysqli_query($conexao, $consulta);
     </script>
 
     <div id="pp"><h1>PROGRAMAÇÃO DE PORTAS</h1></div><hr>
-    <form action="" method="POST">
+    <form action="FichaTecnica.php" method="POST">
         <input type="hidden" name="talaoft" id="talaoft" value=""> 
         <button href="" name="imft" onclick="clicar()">FICHA TECNICA</button>
     </form>
