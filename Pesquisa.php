@@ -22,6 +22,7 @@ $verificar = mysqli_query($conexao, $consulta);
             var resgat = prompt("Digite o Talão")
             var talaoft = document.getElementById("talaoft")
             var talaoidi = document.getElementById("enedit")
+            var talaoeti = document.getElementById("talaoeti")
 
             if(talaoft.value == ""){
                 talaoft.setAttribute("value", resgat)
@@ -30,18 +31,27 @@ $verificar = mysqli_query($conexao, $consulta);
             if(talaoidi.value == ""){
                 talaoidi.setAttribute("value", resgat)
             }
+
+            if(talaoeti.value == ""){
+                talaoeti.setAttribute("value", resgat)
+            }
         }
     </script>
 
     <div id="pp"><h1>PROGRAMAÇÃO DE PORTAS</h1></div><hr>
     <form action="FichaTecnica.php" method="POST">
         <input type="hidden" name="talaoft" id="talaoft" value=""> 
-        <button href="" name="imft" onclick="clicar()">FICHA TECNICA</button>
+        <button name="imft" onclick="clicar()">FICHA TECNICA</button>
+    </form>
+
+    <form action="Etiqueta.php" method="POST">
+        <input type="hidden" name="talaoeti" id="talaoeti" value=""> 
+        <button name="imeti" onclick="clicar()">ETIQUETA</button>
     </form>
 
     <form action="Edicao.php" method="POST">
         <input type="hidden" name="enedit" id="enedit" value=""> 
-        <button href="Edicao.php" name="edit" onclick="clicar()">Editar</button>
+        <button href="Edicao.php" name="edit" onclick="clicar()">EDITAR</button>
     </form>
     <table>
         <tr>
