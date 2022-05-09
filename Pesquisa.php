@@ -23,6 +23,8 @@ $verificar = mysqli_query($conexao, $consulta);
             var talaoft = document.getElementById("talaoft")
             var talaoidi = document.getElementById("enedit")
             var talaoeti = document.getElementById("talaoeti")
+            var talaopl = document.getElementById("talaopl")
+
 
             if(talaoft.value == ""){
                 talaoft.setAttribute("value", resgat)
@@ -34,6 +36,10 @@ $verificar = mysqli_query($conexao, $consulta);
 
             if(talaoeti.value == ""){
                 talaoeti.setAttribute("value", resgat)
+            }
+
+            if(talaopl.value == ""){
+                talaopl.setAttribute("value", resgat)
             }
         }
     </script>
@@ -47,6 +53,11 @@ $verificar = mysqli_query($conexao, $consulta);
     <form action="Etiqueta.php" method="POST">
         <input type="hidden" name="talaoeti" id="talaoeti" value=""> 
         <button name="imeti" onclick="clicar()">ETIQUETA</button>
+    </form>
+
+    <form action="PickList.php" method="POST">
+        <input type="hidden" name="talaopl" id="talaopl" value=""> 
+        <button name="impl" onclick="clicar()">PICKLIST</button>
     </form>
 
     <form action="Edicao.php" method="POST">
