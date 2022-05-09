@@ -279,10 +279,10 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
         <div id="bat">
             <u><h3>Batente</h3></u>
-            Laterais<br>
+            Laterais <br>
             Lado <br>
-            Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
-            Tipo <input type="text" name="tip_bat" value=""><br>
+            Largura do Batente <input type="text" list="lb" name="lag_bat" value="<?php echo $lag_bat ?>"><br>
+            Tipo <input type="text" name="tip_bat" value="<?php echo $tip_bat ?>"><br>
         </div>
 
         <div id="obs">
