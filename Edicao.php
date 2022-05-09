@@ -54,9 +54,9 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
                 $borracha = $dado["borracha"];
 
                 $tipoem = $dado["tipoem"];
-                $tamem = $dado["tamem"];
 
                 $lag_bat = $dado["lag_bat"];
+                $tip_bat = $dado["tip_bat"];
 
                 $obs = $dado["obs"];
 
@@ -197,10 +197,6 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
     <datalist id="tipo">
         <option>MANTA</option>
-        <option>CAIXA DE MADEIRA</option>
-    </datalist>
-
-    <datalist id="caixa">
         <option>CAIXA DE MADEIRA 250x1230X2250</option>
         <option>CAIXA DE MADEIRA 250x1550X2250</option>
     </datalist>
@@ -279,15 +275,14 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
             Embalagem <input type="text" list="tipo" name="tipoem" value="<?php echo $tipoem ?>"><br>
-            Caixa de Madeira<input type="text" list="caixa" name="tamem" value="<?php echo $tamem ?>"><br>
         </div><hr>
 
         <div id="bat">
             <u><h3>Batente</h3></u>
-            Laterais <br>
-            Superior <br>
+            Laterais<br>
             Lado <br>
-            Largura do Batente <input type="text" list="lb" name="lag_bat" value="<?php echo $lag_bat ?>">
+            Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
+            Tipo <input type="text" name="tip_bat" value=""><br>
         </div>
 
         <div id="obs">
