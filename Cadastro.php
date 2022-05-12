@@ -31,15 +31,15 @@ if(isset($_POST['submit']))
     $fechadurad = $_POST["fechadurad"];
     $barra = $_POST["barra"];
     $coluna = $_POST["coluna"];
-    $manual = $_POST["manuall"];
+    $manuall = $_POST["manuall"];
 
     $entr = $_POST["entr"];
     $calco = $_POST["calco"];
     $biometria = $_POST["biometria"];
     $digital = $_POST["digital"];
-
     $perfil = $_POST["perfil"];
     $capadobri = $_POST["capadobri"];
+    $dobradica = $_POST["dobradica"];
     $borracha = $_POST["borracha"];
 
     $tipoem = $_POST["tipoem"];
@@ -49,11 +49,14 @@ if(isset($_POST['submit']))
 
     $obs = $_POST["obs"];
 
-    $resultado = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
-    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,digital,
-    perfil,capadobri,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada','$data_previsao','$modelo',
-    '$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico','$numero','$obsmk','$olho','$fechadurad',
-    '$barra','$coluna','$manual','$entr','$calco','$biometria','$digital','$perfil','$capadobri','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
+    $resultado1 = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
+    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,
+    digital,perfil,capadobri,dobradica,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada',
+    '$data_previsao','$modelo','$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico',
+    '$numero','$obsmk','$olho','$fechadurad','$barra','$coluna','$manuall','$entr','$calco','$biometria','$digital','$perfil','$capadobri',
+    '$dobradica','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
+
+
 }
 ?>
 
@@ -65,6 +68,25 @@ if(isset($_POST['submit']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <script>
+        function script(){
+            var modelo = document.getElementById("modelo")
+            var dobradica = document.getElementById("dobradica")
+            var coddobradica = document.getElementById("coddobradica")
+
+            if(modelo.value == "463"){
+                dobradica.setAttribute("value","KIT DOBRADIÇA COM BOLT CR P/463 CN")
+
+            }else if(modelo.value == ""){
+                dobradica.setAttribute("value"," ")
+
+            }else if(modelo.value == "Telefonia" | "TelAlvenaria" | "465" | "467" | "469" | "470" | "471" | "472") {
+                dobradica.setAttribute("value","KIT DOBRADICA  ABERTURA P/ FORA CN")
+            }
+
+            
+        }
+    </script>
 </head>
 <body>
     <datalist id="mod">
@@ -118,15 +140,16 @@ if(isset($_POST['submit']))
 
 
     <datalist id="ferragens">
+        <option>FECHADURA PLASTICA</option>
         <option>KIT FERRAGENS CR MxF</option>
         <option>KIT FERRAGENS CR MxM</option>
-        <option>KIT FERRAGENS CRA MxF</option>
-        <option>KIT FERRAGENS CRA MxM</option>
         <option>KIT ESPELHO TELEFONIA</option>
+        <option>PUXADOR</option>
     </datalist>
 
     <datalist id="cilindro">
         <option>CIL 76 P.113</option>
+        <option>CIL 76 P.586E COM 3 CHAVES</option>
         <option>CIL 76 P.236S COM 5 CHAVES</option>
         <option>CIL 81 P.236S COM 5 CHAVES</option>
         <option>CIL ENTR 70 P.236S COM 1 CHAVE</option>
@@ -156,6 +179,19 @@ if(isset($_POST['submit']))
         <option>FECHADURA M70</option>
     </datalist>
 
+    <datalist id="entr">
+        <option>BRANCO</option>
+        <option>PRETA</option>
+    </datalist>
+
+    <datalist id="biometria">
+        <option>LEITOR BIOMETRICO</option>
+    </datalist>
+
+    <datalist id="teclado">
+        <option>LEITOR DIGITAL</option>
+    </datalist>
+
     <datalist id="calco">
         <option>CALÇO DE 01 a 03mm</option>
         <option>CALÇO DE 04 a 08mm</option>
@@ -176,6 +212,11 @@ if(isset($_POST['submit']))
     <datalist id="plasticos">
         <option>BRANCO</option>
         <option>CINZA</option>
+        <option>MARROM</option>
+    </datalist>
+
+    <datalist id="plasticosC">
+        <option>BRANCO</option>
         <option>MARROM</option>
     </datalist>
 
@@ -206,7 +247,7 @@ if(isset($_POST['submit']))
 
         <div id="medida">
             <u><h3>Medidas</h3></u>
-            Modelo <input type="text" list="mod" name="modelo"><br>
+            Modelo <input type="text" list="mod" onkeyup="script()" name="modelo" id="modelo" value=""><br>
             Largura <input type="text" list="lag" name="largura"><br>
             Altura <input type="text" name="altura" value="2085"><br>
             Lado de abertura <input type="text" list="lad" name="lado"><br>
@@ -221,9 +262,12 @@ if(isset($_POST['submit']))
 
         <div id="kits">
             <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" name="ferragens"><br>
-            Cilindro Principal <input type="text" list="cilindro" name="cilindroP"><br>
-            Cilindro Secundário <input type="text" list="cilindro" name="cilindroS"><br>
+            Ferragens <input type="text" list="ferragens" id="ferragens" name="ferragens" value=""><br>
+            <input type="text" name="codferragens" id="codferragens" value="">
+            Cilindro Principal <input type="text" list="cilindro" id="cilindroP" name="cilindroP" value=""><br>
+            <input type="text" name="codcilindroP" id="codcilindroP" value="">
+            Cilindro Secundário <input type="text" list="cilindro" id="cilindroS" name="cilindroS" value=""><br>
+            <input type="text" name="codcilindroS" id="codcilindroS" value="">
         </div><hr><hr>
 
         <div id="master">
@@ -235,30 +279,42 @@ if(isset($_POST['submit']))
 
         <div id="complementos">
             <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="oalt" name="olho"><br>
-            Fechadura Adicional <input type="text" list="fechadura" name="fechadurad"><br>
-            Barra Antipanico <input type="text" list="barra" name="barra"><br>
+            Olho Mágico <input type="text" list="oalt" id="olho" name="olho" value=""><br>
+            <input type="text" name="codolho" id="codolho" value="">
+            Fechadura Adicional <input type="text" list="fechadura" id="fechadurad" name="fechadurad" value=""><br>
+            <input type="text" name="codfechadurad" id="codfechadurad" value="">
+            Barra Antipanico <input type="text" list="barra" id="barra" name="barra" value=""><br>
+            <input type="text" name="codbarra" id="codbarra" value="">
             Coluna Central <input type="text" list="esch" name="coluna"><br>
             Manual da Porta <input type="text" list="manual" name="manuall">
             
             
             <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="esch" name="entr"><br>
-            Calço <input type="text" list="calco" name="calco"><br>
-            Biometria <input type="text" list="esch" name="biometria"><br>
-            Teclado <input type="text" list="esch" name="digital"><br>
+            Fechadura Entr <input type="text" list="entr" id="entr" name="entr" value=""><br>
+            <input type="text" name="codentr" id="codentr" value="">
+            Calço <input type="text" list="calco" id="calco" name="calco" value=""><br>
+            <input type="text" name="codcalco" id="codcalco" value="">
+            Biometria <input type="text" list="biometria" id="biometria" name="biometria" value=""><br>
+            <input type="text" name="codbiometria"  id="" id="codbiometria" value="">
+            Teclado <input type="text" list="teclado" id="digital" name="digital" value=""><br>
+            <input type="text" name="coddigital" id="coddigital" value="">
         </div><hr>
 
         <div id="plasticos">
             <u><h3>Plasticos</h3></u>
             Perfil <input type="text" list="plasticos" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticos" name="capadobri"><br>
-            Borracha de Vedação <input type="text" list="plasticos" name="borracha"><br>
+            Kit de Capa da Dobradiça <input type="text" list="plasticosC" id="capadobri" name="capadobri" value=""><br>
+            <input type="text" name="codcapadobri" id="codcapadobri" value="">
+            <input type="text" name="dobradica" id="dobradica" value="">
+            <input type="text" name="coddobradica" id="coddobradica" value="">
+            Borracha de Vedação <input type="text" list="plasticos" id="borracha" name="borracha" value=""><br>
+            <input type="text" name="codborracha" id="codborracha" value="">
         </div><hr><hr>
 
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" name="tipoem"><br>
+            Embalagem <input type="text" list="tipo" id="tipoem" name="tipoem" value=""><br>
+            <input type="text" name="codtipoem" id="codtipoem" value="">
         </div><hr>
 
         <div id="bat">

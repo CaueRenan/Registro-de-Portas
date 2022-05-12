@@ -49,9 +49,9 @@ if(isset($_POST["impl"]) && !empty($_POST["talaopl"])){
 
                 echo "<tr>";
                 echo "<td>","<b>ENTRADA</b>","</td>";
-                echo "<td>".$dados["data_entrada"]."</td>";
+                echo "<td>".date("d/m/y", strtotime($dados["data_entrada"]))."</td>";
                 echo "<td>","<b>PREVISÃO</b>","</td>";
-                echo "<td>".$dados["data_previsao"]."</td>";
+                echo "<td>".date("d/m/y", strtotime($dados["data_previsao"]))."</td>";
                 echo "</tr>";
 
                 echo "<tr>";
@@ -127,19 +127,19 @@ if(isset($_POST["impl"]) && !empty($_POST["talaopl"])){
                 echo "<td>".$dados["digital"]."</td>";
                 echo "</tr>";
                 echo "<tr>";
-                echo "<td>","Caixa de Madeira","</td>";
+                echo "<td>","Embalagem","</td>";
                 echo "<td>","</td>";
                 echo "<td>".$dados["tipoem"]."</td>";
                 echo "</tr>";
                 echo "<tr>";
                 echo "<td>","Bucha de Piso","</td>";
-                echo "<td>","</td>";
-                echo "<td>","</td>";//arruma ai
+                echo "<td>","021366","</td>";
+                echo "<td>","BUCHA DE PISO - CROMADA","</td>";
                 echo "</tr>";
                 echo "<tr>";
                 echo "<td>","Certificado de Garantia","</td>";
-                echo "<td>","</td>";
-                echo "<td>","</td>";//arruma ai
+                echo "<td>","025772","</td>";
+                echo "<td>","CERTIFICADO DE GARANTIA - 1 ANO","</td>";
                 echo "</tr>";
                 echo "<tr>";
                 echo "<td>","Manual de Instalação","</td>";
