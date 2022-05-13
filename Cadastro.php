@@ -28,6 +28,7 @@ if(isset($_POST['submit']))
     $obsmk = $_POST["obsmk"];
 
     $olho = $_POST["olho"];
+    $altolho = $_POST["altolho"];
     $fechadurad = $_POST["fechadurad"];
     $barra = $_POST["barra"];
     $coluna = $_POST["coluna"];
@@ -50,10 +51,10 @@ if(isset($_POST['submit']))
     $obs = $_POST["obs"];
 
     $resultado1 = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
-    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,fechadurad,barra,coluna,manuall,entr,calco,biometria,
+    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,altolho,fechadurad,barra,coluna,manuall,entr,calco,biometria,
     digital,perfil,capadobri,dobradica,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada',
     '$data_previsao','$modelo','$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico',
-    '$numero','$obsmk','$olho','$fechadurad','$barra','$coluna','$manuall','$entr','$calco','$biometria','$digital','$perfil','$capadobri',
+    '$numero','$obsmk','$olho','$altolho','$fechadurad','$barra','$coluna','$manuall','$entr','$calco','$biometria','$digital','$perfil','$capadobri',
     '$dobradica','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
 
 
@@ -73,18 +74,258 @@ if(isset($_POST['submit']))
             var modelo = document.getElementById("modelo")
             var dobradica = document.getElementById("dobradica")
             var coddobradica = document.getElementById("coddobradica")
+            var manuall = document.getElementById("manuall")
+            var codmanuall = document.getElementById("codmanuall")
+
+            var inputferragens = document.getElementById("inputferragens")
+            var codferragens = document.getElementById("codferragens")
+
+            var cilindroP = document.getElementById("cilindroP")
+            var codcilindroP = document.getElementById("codcilindroP")
+
+            var cilindroS = document.getElementById("cilindroS")
+            var codcilindroS = document.getElementById("codcilindroS")
+
+            var inputolho = document.getElementById("inputolho")
+            var codolho = document.getElementById("codolho")
+
+            var inputfechadurad = document.getElementById("inputfechadurad")
+            var codfechadurad = document.getElementById("codfechadurad")
+
+            var inputbarra = document.getElementById("inputbarra")
+            var codbarra = document.getElementById("codbarra")
+
+            var inputentr = document.getElementById("inputentr")
+            var codentr = document.getElementById("codentr")
+            var inputcalco = document.getElementById("inputcalco")
+            var codcalco = document.getElementById("codcalco")
+            var inputbiometria = document.getElementById("inputbiometria")
+            var codbiometria = document.getElementById("codbiometria")
+            var digital = document.getElementById("digital")
+            var coddigital = document.getElementById("coddigital")
+
+            var capadobri = document.getElementById("capadobri")
+            var codcapadobri = document.getElementById("codcapadobri")
+
+            var borracha = document.getElementById("borracha")
+            var codborracha = document.getElementById("codborracha")
+
+            var tipoem = document.getElementById("tipoem")
+            var codtipoem = document.getElementById("codtipoem")
+
+            var altura = document.getElementById("altura")
+            var lado = document.getElementById("lado")
+            var laterais = document.getElementById("laterais")
+            var batlad = document.getElementById("batlad")
+
 
             if(modelo.value == "463"){
                 dobradica.setAttribute("value","KIT DOBRADIÇA COM BOLT CR P/463 CN")
+                coddobradica.setAttribute("value", "050406")
+                manuall.setAttribute("value", "MANUAL DE INSTALAÇÃO DA PORTA 463 E-COMMERCE")
+                codmanuall.setAttribute("value", "025772")
 
             }else if(modelo.value == ""){
                 dobradica.setAttribute("value"," ")
+                coddobradica.setAttribute("value", " ")
+                manuall.setAttribute("value", "")
+                codmanuall.setAttribute("value", "")
 
             }else if(modelo.value == "Telefonia" | "TelAlvenaria" | "465" | "467" | "469" | "470" | "471" | "472") {
                 dobradica.setAttribute("value","KIT DOBRADICA  ABERTURA P/ FORA CN")
+                coddobradica.setAttribute("value", "050433")
+                manuall.setAttribute("value", "MANUAL DE INSTALAÇÃO DA PORTA")
+                codmanuall.setAttribute("value", "021597")
+
             }
 
-            
+            if(inputferragens.value == "" && "PUXADOR"){
+                codferragens.setAttribute("value", "")
+
+            } else if (inputferragens.value == "FECHADURA PLASTICA"){
+                codferragens.setAttribute("value", "021590")
+
+            }  else if (inputferragens.value == "KIT FERRAGENS CR MxF"){
+                codferragens.setAttribute("value", "021435")
+                
+            }  else if (inputferragens.value == "KIT FERRAGENS CR MxM"){
+                codferragens.setAttribute("value", "021434")
+                
+            }  else if (inputferragens.value == "KIT ESPELHO TELEFONIA"){
+                codferragens.setAttribute("value", "021370")
+                
+            }
+
+            if(cilindroP.value == ""){
+                codcilindroP.setAttribute("value", "")
+
+            } else if (cilindroP.value == "CIL 76 P.113"){
+                codcilindroP.setAttribute("value", "051145")
+
+            }  else if (cilindroP.value == "CIL 76 P.586E COM 3 CHAVES"){
+                codcilindroP.setAttribute("value", "051876")
+                
+            }  else if (cilindroP.value == "CIL 76 P.236S COM 5 CHAVES"){
+                codcilindroP.setAttribute("value", "050196")
+                
+            }  else if (cilindroP.value == "CIL 81 P.236S COM 5 CHAVES"){
+                codcilindroP.setAttribute("value", "050232")
+                
+            }  else if (cilindroP.value == "CIL ENTR 70 P.236S COM 1 CHAVE"){
+                codcilindroP.setAttribute("value", "051262")
+                
+            }  else if (cilindroP.value == "CIL ENTR 73 P.236S COM 1 CHAVE"){
+                codcilindroP.setAttribute("value", "051263")
+                
+            }
+
+            if(cilindroS.value == ""){
+                codcilindroS.setAttribute("value", "")
+
+            } else if (cilindroS.value == "CIL 76 P.113"){
+                codcilindroS.setAttribute("value", "051145")
+
+            }  else if (cilindroS.value == "CIL 76 P.586E COM 3 CHAVES"){
+                codcilindroS.setAttribute("value", "051876")
+                
+            }  else if (cilindroS.value == "CIL 76 P.236S COM 5 CHAVES"){
+                codcilindroS.setAttribute("value", "050196")
+                
+            }  else if (cilindroS.value == "CIL 81 P.236S COM 5 CHAVES"){
+                codcilindroS.setAttribute("value", "050232")
+                
+            }  else if (cilindroS.value == "CIL ENTR 70 P.236S COM 1 CHAVE"){
+                codcilindroS.setAttribute("value", "051262")
+                
+            }  else if (cilindroS.value == "CIL ENTR 73 P.236S COM 1 CHAVE"){
+                codcilindroS.setAttribute("value", "051263")
+                
+            }
+
+            if(inputolho.value == ""){
+                codolho.setAttribute("value", "")
+
+            } else if (inputolho.value == "OLHO MAGICO CR"){
+                codolho.setAttribute("value", "021392")
+
+            }  else if (inputolho.value == "OLHO MAGICO LP"){
+                codolho.setAttribute("value", "021390")
+                
+            }
+
+            if(inputfechadurad.value == ""){
+                codfechadurad.setAttribute("value", "")
+
+            } else if (inputfechadurad.value == "FECHADURA TRI-LOCK S/CILINDRO"){
+                codfechadurad.setAttribute("value", "FE0388")
+
+            }  else if (inputfechadurad.value == "FECHADURA M70"){
+                codfechadurad.setAttribute("value", "FE0564")
+                
+            }
+
+            if(inputbarra.value == ""){
+                codbarra.setAttribute("value", "")
+
+            } else if (inputbarra.value == "BARRA ANTIPANICO DORMA"){
+                codbarra.setAttribute("value", "026259")
+
+            }  else if (inputbarra.value == "BARRA ANTIPANICO TEKIN"){
+                codbarra.setAttribute("value", "025782")
+                
+            }
+
+            if(inputentr.value == ""){
+                codentr.setAttribute("value", "")
+
+            } else if (inputentr.value == "BRANCO"){
+                codentr.setAttribute("value", "FE0758")
+
+            }  else if (inputentr.value == "PRETA"){
+                codentr.setAttribute("value", "FE0969")
+                
+            }
+
+            if(inputcalco.value == ""){
+                codcalco.setAttribute("value", "")
+
+            } else if (inputcalco.value == "CALÇO DE 01 a 03mm"){
+                codcalco.setAttribute("value", "FE0823")
+
+            }  else if (inputcalco.value == "CALÇO DE 04 a 08mm"){
+                codcalco.setAttribute("value", "FE0824")
+                
+            }  else if (inputcalco.value == "CALÇO DE 09 a 12mm"){
+                codcalco.setAttribute("value", "FE0825")
+                
+            }
+
+            if(inputbiometria.value == ""){
+                codbiometria.setAttribute("value", "")
+
+            } else if (inputbiometria.value == "LEITOR BIOMETRICO"){
+                codbiometria.setAttribute("value", "FE0759")
+
+            }
+
+            if(digital.value == ""){
+                coddigital.setAttribute("value", "")
+
+            } else if (digital.value == "LEITOR DIGITAL"){
+                coddigital.setAttribute("value", "FE0760")
+
+            }
+
+            if(capadobri.value == ""){
+                codcapadobri.setAttribute("value", "")
+
+            } else if (capadobri.value == "BRANCO"){
+                codcapadobri.setAttribute("value", "021424")
+
+            }  else if (capadobri.value == "MARROM"){
+                codcapadobri.setAttribute("value", "021425")
+                
+            }
+
+            if(borracha.value == ""){
+                codborracha.setAttribute("value", "")
+
+            } else if (borracha.value == "BRANCO"){
+                codborracha.setAttribute("value", "021360")
+
+            }  else if (borracha.value == "CINZA"){
+                codborracha.setAttribute("value", "021362")
+                
+            }  else if (borracha.value == "MARROM"){
+                codborracha.setAttribute("value", "021361")
+                
+            }
+
+            if(tipoem.value == "" && "MANTA"){
+                codtipoem.setAttribute("value", "")
+
+            } else if (tipoem.value == "CAIXA DE MADEIRA 250x1230X2250"){
+                codtipoem.setAttribute("value", "030085")
+
+            }  else if (tipoem.value == "CAIXA DE MADEIRA 250x1550X2250"){
+                codtipoem.setAttribute("value", "030086")
+                
+            }
+
+            if(altura.value.length > 0){
+                laterais.setAttribute("value", altura)
+
+            } else {
+                laterais.setAttribute("value", "")
+            }
+
+            if(lado.value.length > 0){
+                batlad.setAttribute("value", lado)
+
+            } else {
+                batlad.setAttribute("value", "")
+            }
+
         }
     </script>
 </head>
@@ -173,6 +414,11 @@ if(isset($_POST['submit']))
         <option>1500mm</option>
     </datalist>
 
+    <datalist id="olho">
+        <option>OLHO MAGICO CR</option>
+        <option>OLHO MAGICO LP</option>
+    </datalist>
+
 
     <datalist id="fechadura">
         <option>FECHADURA TRI-LOCK S/CILINDRO</option>
@@ -201,11 +447,6 @@ if(isset($_POST['submit']))
     <datalist id="barra">
         <option>BARRA ANTIPANICO DORMA</option>
         <option>BARRA ANTIPANICO TEKIN</option>
-    </datalist>
-
-    <datalist id="manual">
-        <option>MANUAL DE INSTALAÇÃO DA PORTA</option>
-        <option>MANUAL DE INSTALAÇÃO DA PORTA 463</option>
     </datalist>
 
 
@@ -249,8 +490,8 @@ if(isset($_POST['submit']))
             <u><h3>Medidas</h3></u>
             Modelo <input type="text" list="mod" onkeyup="script()" name="modelo" id="modelo" value=""><br>
             Largura <input type="text" list="lag" name="largura"><br>
-            Altura <input type="text" name="altura" value="2085"><br>
-            Lado de abertura <input type="text" list="lad" name="lado"><br>
+            Altura <input type="text" onkeyup="script()" id="altura" name="altura" value="2085"><br>
+            Lado de abertura <input type="text" onkeyup="script()" list="lad" id="lado" name="lado" value=""><br>
             Sentido de abertura<input type="text" list="sent" name="sentido">
         </div><hr>
 
@@ -262,11 +503,11 @@ if(isset($_POST['submit']))
 
         <div id="kits">
             <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" id="ferragens" name="ferragens" value=""><br>
+            Ferragens <input type="text" list="ferragens" onkeyup="script()" id="inputferragens" name="inputferragens" value=""><br>
             <input type="text" name="codferragens" id="codferragens" value="">
-            Cilindro Principal <input type="text" list="cilindro" id="cilindroP" name="cilindroP" value=""><br>
+            Cilindro Principal <input type="text" list="cilindro" onkeyup="script()" id="cilindroP" name="cilindroP" value=""><br>
             <input type="text" name="codcilindroP" id="codcilindroP" value="">
-            Cilindro Secundário <input type="text" list="cilindro" id="cilindroS" name="cilindroS" value=""><br>
+            Cilindro Secundário <input type="text" list="cilindro" onkeyup="script()" id="cilindroS" name="cilindroS" value=""><br>
             <input type="text" name="codcilindroS" id="codcilindroS" value="">
         </div><hr><hr>
 
@@ -279,48 +520,50 @@ if(isset($_POST['submit']))
 
         <div id="complementos">
             <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="oalt" id="olho" name="olho" value=""><br>
+            Olho Mágico <input type="text" list="olho" onkeyup="script()" id="inputolho" name="inputolho" value="">
+            Altura do Olho <input type="text" list="oalt" id="altolho" name="altolho" value=""><br>
             <input type="text" name="codolho" id="codolho" value="">
-            Fechadura Adicional <input type="text" list="fechadura" id="fechadurad" name="fechadurad" value=""><br>
+            Fechadura Adicional <input type="text" list="fechadura" onkeyup="script()" id="inputfechadurad" name="inputfechadurad" value=""><br>
             <input type="text" name="codfechadurad" id="codfechadurad" value="">
-            Barra Antipanico <input type="text" list="barra" id="barra" name="barra" value=""><br>
+            Barra Antipanico <input type="text" list="barra" onkeyup="script()" id="inputbarra" name="inputbarra" value=""><br>
             <input type="text" name="codbarra" id="codbarra" value="">
             Coluna Central <input type="text" list="esch" name="coluna"><br>
-            Manual da Porta <input type="text" list="manual" name="manuall">
+            <input type="text" name="manuall" id="manuall">
+            <input type="text" id="codmanuall" name="manuall" value="">
             
             
             <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="entr" id="entr" name="entr" value=""><br>
+            Fechadura Entr <input type="text" list="entr" onkeyup="script()" id="inputentr" name="inputentr" value=""><br>
             <input type="text" name="codentr" id="codentr" value="">
-            Calço <input type="text" list="calco" id="calco" name="calco" value=""><br>
+            Calço <input type="text" list="calco" onkeyup="script()" id="inputcalco" name="inputcalco" value=""><br>
             <input type="text" name="codcalco" id="codcalco" value="">
-            Biometria <input type="text" list="biometria" id="biometria" name="biometria" value=""><br>
-            <input type="text" name="codbiometria"  id="" id="codbiometria" value="">
-            Teclado <input type="text" list="teclado" id="digital" name="digital" value=""><br>
+            Biometria <input type="text" list="biometria" onkeyup="script()" id="inputbiometria" name="inputbiometria" value=""><br>
+            <input type="text" name="codbiometria" id="codbiometria" value="">
+            Teclado <input type="text" list="teclado" onkeyup="script()" id="digital" name="digital" value=""><br>
             <input type="text" name="coddigital" id="coddigital" value="">
         </div><hr>
 
         <div id="plasticos">
             <u><h3>Plasticos</h3></u>
             Perfil <input type="text" list="plasticos" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticosC" id="capadobri" name="capadobri" value=""><br>
+            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onkeyup="script()" id="capadobri" name="capadobri" value=""><br>
             <input type="text" name="codcapadobri" id="codcapadobri" value="">
             <input type="text" name="dobradica" id="dobradica" value="">
             <input type="text" name="coddobradica" id="coddobradica" value="">
-            Borracha de Vedação <input type="text" list="plasticos" id="borracha" name="borracha" value=""><br>
+            Borracha de Vedação <input type="text" list="plasticos" onkeyup="script()" id="borracha" name="borracha" value=""><br>
             <input type="text" name="codborracha" id="codborracha" value="">
         </div><hr><hr>
 
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" id="tipoem" name="tipoem" value=""><br>
+            Embalagem <input type="text" list="tipo" onkeyup="script()" id="tipoem"  name="tipoem" value=""><br>
             <input type="text" name="codtipoem" id="codtipoem" value="">
         </div><hr>
 
         <div id="bat">
             <u><h3>Batente</h3></u>
-            Laterais<br>
-            Lado <br>
+            Laterais <input type="text" id="laterais" name="laterais" value=""><br>
+            Lado <input type="text" id="batlad" name="batlad" value=""><br>
             Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
             Tipo <input type="text" name="tip_bat" value=""><br>
         </div>
