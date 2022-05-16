@@ -360,6 +360,16 @@ if(isset($_POST['submit']))
                 tip_bat.setAttribute("value","PROFUNDO")
             }
 
+            
+            if(modelo.value == "467" | "468" | "469" | "471" | "472" && acabint.value != "PVC BRANCO" | "PVC CINZA" |
+            acabext.value != "PVC BRANCO" | "PVC CINZA" && inputentr.value == "BRANCO" | "PRETA"){
+                cilindroP.setAttribute("value", "CIL ENTR 73 P.236S COM 1 CHAVE")
+
+            } else if(modelo.value == "467" | "468" | "469" | "471" | "472" && acabint.value != "PVC BRANCO" | "PVC CINZA" |
+            acabext.value != "PVC BRANCO" | "PVC CINZA"){
+                cilindroP.setAttribute("value", "CIL 81 P.236S COM 5 CHAVES")
+            }
+
         }
     </script>
 </head>
@@ -370,6 +380,7 @@ if(isset($_POST['submit']))
         <option>463</option>
         <option>465</option>
         <option>467</option>
+        <option>468</option>
         <option>469</option>
         <option>470</option>
         <option>471</option>
