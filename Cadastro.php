@@ -113,10 +113,19 @@ if(isset($_POST['submit']))
             var tipoem = document.getElementById("tipoem")
             var codtipoem = document.getElementById("codtipoem")
 
-            var altura = document.getElementById("altura")
-            var lado = document.getElementById("lado")
+            var altura = document.getElementById("altura").value
+            var lado = document.getElementById("lado").value
+            var acabint = document.getElementById("acabint")
+            var acabext = document.getElementById("acabext")
             var laterais = document.getElementById("laterais")
             var batlad = document.getElementById("batlad")
+            var tip_bat = document.getElementById("tip_bat")
+
+            var servico = document.getElementById("servico")
+            var qtdk = document.getElementById("qtdk")
+            var obsmk = document.getElementById("obsmk")
+
+
 
 
             if(modelo.value == "463"){
@@ -158,24 +167,39 @@ if(isset($_POST['submit']))
 
             if(cilindroP.value == ""){
                 codcilindroP.setAttribute("value", "")
+                servico.setAttribute("value", "")
+                qtdk.setAttribute("value", "")
 
             } else if (cilindroP.value == "CIL 76 P.113"){
                 codcilindroP.setAttribute("value", "051145")
+                servico.setAttribute("value", "MESTRAGEM")
+                qtdk.setAttribute("value", "")
+
 
             }  else if (cilindroP.value == "CIL 76 P.586E COM 3 CHAVES"){
                 codcilindroP.setAttribute("value", "051876")
+                servico.setAttribute("value", "CARTÃO")
+                qtdk.setAttribute("value", "3")
                 
             }  else if (cilindroP.value == "CIL 76 P.236S COM 5 CHAVES"){
                 codcilindroP.setAttribute("value", "050196")
+                servico.setAttribute("value", "CARTÃO")
+                qtdk.setAttribute("value", "5")
                 
             }  else if (cilindroP.value == "CIL 81 P.236S COM 5 CHAVES"){
                 codcilindroP.setAttribute("value", "050232")
+                servico.setAttribute("value", "CARTÃO")
+                qtdk.setAttribute("value", "5")
                 
             }  else if (cilindroP.value == "CIL ENTR 70 P.236S COM 1 CHAVE"){
                 codcilindroP.setAttribute("value", "051262")
+                servico.setAttribute("value", "CARTÃO")
+                qtdk.setAttribute("value", "1")
                 
             }  else if (cilindroP.value == "CIL ENTR 73 P.236S COM 1 CHAVE"){
                 codcilindroP.setAttribute("value", "051263")
+                servico.setAttribute("value", "CARTÃO")
+                qtdk.setAttribute("value", "1")
                 
             }
 
@@ -312,18 +336,28 @@ if(isset($_POST['submit']))
                 
             }
 
-            if(altura.value.length > 0){
+            if(altura.length > 1){
                 laterais.setAttribute("value", altura)
 
-            } else {
+            } else if(altura.length < 1){
                 laterais.setAttribute("value", "")
             }
 
-            if(lado.value.length > 0){
+            if(lado.length > 1){
                 batlad.setAttribute("value", lado)
 
-            } else {
+            } else if(lado.length < 1){
                 batlad.setAttribute("value", "")
+            }
+
+            if(acabint.value == "PVC BRANCO" | "PVC CINZA" | acabext.value == "PVC BRANCO" | "PVC CINZA"){
+                tip_bat.setAttribute("value", "NORMAL")
+
+            } else if(acabint.value == "AÇO" | "" | acabext == "AÇO" | ""){
+                tip_bat.setAttribute("value", "")
+                
+            } else {
+                tip_bat.setAttribute("value","PROFUNDO")
             }
 
         }
@@ -362,6 +396,7 @@ if(isset($_POST['submit']))
 
 
     <datalist id="ladin">
+        <option>AÇO</option>
         <option>PVC BRANCO</option>
         <option>PVC CINZA</option>
         <option>MDF CRÚ</option>
@@ -371,6 +406,7 @@ if(isset($_POST['submit']))
     </datalist>
 
     <datalist id="ladex">
+        <option>AÇO</option>
         <option>PVC BRANCO</option>
         <option>PVC CINZA</option>
         <option>MDF CRÚ</option>
@@ -398,10 +434,8 @@ if(isset($_POST['submit']))
     </datalist>
 
 
-    <datalist id="servico">
-        <option>CARTÃO</option>
+    <datalist id="mkserv">
         <option>UNIFICAÇÃO</option>
-        <option>MESTRAGEM</option>
     </datalist>
 
 
@@ -497,8 +531,8 @@ if(isset($_POST['submit']))
 
         <div id="acabamento">
             <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" list="ladin" name="acabint"><br>
-            Acabamento Externo <input type="text" list="ladex" name="acabext"><br>
+            Acabamento Interno <input type="text" onkeyup="script()" list="ladin" id="acabint" name="acabint" value=""><br>
+            Acabamento Externo <input type="text" onkeyup="script()" list="ladex" id="acabext" name="acabext" value=""><br>
         </div><hr>
 
         <div id="kits">
@@ -513,9 +547,9 @@ if(isset($_POST['submit']))
 
         <div id="master">
             <u><h3>Master Key</h3></u>
-            Tipo de Serviço <input type="text" list="servico" name="servico"><br>
-            Quantidade de Chaves <input type="text" name="numero"><br>
-            Observação <input type="text" name="obsmk"><br>
+            Tipo de Serviço <input type="text" list="mkserv" id="servico" name="servico" value=""><br>
+            Quantidade de Chaves <input type="text" id="qtdk" name="numero"><br>
+            Observação <input type="text" id="obsmk" name="obsmk" value=""><br>
         </div><hr>
 
         <div id="complementos">
@@ -565,7 +599,7 @@ if(isset($_POST['submit']))
             Laterais <input type="text" id="laterais" name="laterais" value=""><br>
             Lado <input type="text" id="batlad" name="batlad" value=""><br>
             Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
-            Tipo <input type="text" name="tip_bat" value=""><br>
+            Tipo <input type="text" name="tip_bat" id="tip_bat" value=""><br>
         </div>
 
         <div id="obs">
