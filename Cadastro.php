@@ -115,8 +115,8 @@ if(isset($_POST['submit']))
 
             var altura = document.getElementById("altura").value
             var lado = document.getElementById("lado").value
-            var acabint = document.getElementById("acabint")
-            var acabext = document.getElementById("acabext")
+            var acabint = document.getElementById("acabint").value
+            var acabext = document.getElementById("acabext").value
             var laterais = document.getElementById("laterais")
             var batlad = document.getElementById("batlad")
             var tip_bat = document.getElementById("tip_bat")
@@ -135,12 +135,12 @@ if(isset($_POST['submit']))
                 codmanuall.setAttribute("value", "025772")
 
             }else if(modelo.value == ""){
-                dobradica.setAttribute("value"," ")
-                coddobradica.setAttribute("value", " ")
+                dobradica.setAttribute("value","")
+                coddobradica.setAttribute("value", "")
                 manuall.setAttribute("value", "")
                 codmanuall.setAttribute("value", "")
 
-            }else if(modelo.value == "Telefonia" | "TelAlvenaria" | "465" | "467" | "469" | "470" | "471" | "472") {
+            }else if(modelo.value != "463") {
                 dobradica.setAttribute("value","KIT DOBRADICA  ABERTURA P/ FORA CN")
                 coddobradica.setAttribute("value", "050433")
                 manuall.setAttribute("value", "MANUAL DE INSTALAÇÃO DA PORTA")
@@ -334,40 +334,6 @@ if(isset($_POST['submit']))
             }  else if (tipoem.value == "CAIXA DE MADEIRA 250x1550X2250"){
                 codtipoem.setAttribute("value", "030086")
                 
-            }
-
-            if(altura.length > 1){
-                laterais.setAttribute("value", altura)
-
-            } else if(altura.length < 1){
-                laterais.setAttribute("value", "")
-            }
-
-            if(lado.length > 1){
-                batlad.setAttribute("value", lado)
-
-            } else if(lado.length < 1){
-                batlad.setAttribute("value", "")
-            }
-
-            if(acabint.value == "PVC BRANCO" | "PVC CINZA" | acabext.value == "PVC BRANCO" | "PVC CINZA"){
-                tip_bat.setAttribute("value", "NORMAL")
-
-            } else if(acabint.value == "AÇO" | "" | acabext == "AÇO" | ""){
-                tip_bat.setAttribute("value", "")
-                
-            } else {
-                tip_bat.setAttribute("value","PROFUNDO")
-            }
-
-            
-            if(modelo.value == "467" | "468" | "469" | "471" | "472" && acabint.value != "PVC BRANCO" | "PVC CINZA" |
-            acabext.value != "PVC BRANCO" | "PVC CINZA" && inputentr.value == "BRANCO" | "PRETA"){
-                cilindroP.setAttribute("value", "CIL ENTR 73 P.236S COM 1 CHAVE")
-
-            } else if(modelo.value == "467" | "468" | "469" | "471" | "472" && acabint.value != "PVC BRANCO" | "PVC CINZA" |
-            acabext.value != "PVC BRANCO" | "PVC CINZA"){
-                cilindroP.setAttribute("value", "CIL 81 P.236S COM 5 CHAVES")
             }
 
         }
