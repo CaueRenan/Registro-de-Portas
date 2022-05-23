@@ -19,31 +19,47 @@ if(isset($_POST['submit']))
     $acabint = $_POST["acabint"];
     $acabext = $_POST["acabext"];
 
-    $ferragens = $_POST["ferragens"];
+    $inputferragens = $_POST["inputferragens"];
+    $codferragens = $_POST["codferragens"];
     $cilindroP = $_POST["cilindroP"];
+    $codcilindroP = $_POST["codcilindroP"];
     $cilindroS = $_POST["cilindroS"];
+    $codcilindroS = $_POST["codcilindroS"];
 
     $servico = $_POST["servico"];
     $numero = $_POST["numero"];
     $obsmk = $_POST["obsmk"];
 
-    $olho = $_POST["olho"];
+    $inputolho = $_POST["inputolho"];
     $altolho = $_POST["altolho"];
-    $fechadurad = $_POST["fechadurad"];
-    $barra = $_POST["barra"];
+    $codolho = $_POST["codolho"];
+    $inputfechadurad = $_POST["inputfechadurad"];
+    $codfechadurad = $_POST["codfechadurad"];
+    $inputbarra = $_POST["inputbarra"];
+    $codbarra = $_POST["codbarra"];
     $coluna = $_POST["coluna"];
     $manuall = $_POST["manuall"];
 
-    $entr = $_POST["entr"];
-    $calco = $_POST["calco"];
-    $biometria = $_POST["biometria"];
+    $inputentr = $_POST["inputentr"];
+    $codentr = $_POST["codentr"];
+    $inputcalco = $_POST["inputcalco"];
+    $codcalco = $_POST["codcalco"];
+    $inputbiometria = $_POST["inputbiometria"];
+    $codbiometria = $_POST["codbiometria"];
     $digital = $_POST["digital"];
+    $coddigital = $_POST["coddigital"];
+
+
     $perfil = $_POST["perfil"];
     $capadobri = $_POST["capadobri"];
+    $codcapadobri = $_POST["codcapadobri"];
     $dobradica = $_POST["dobradica"];
+    $coddobradica = $_POST["coddobradica"];
     $borracha = $_POST["borracha"];
+    $codborracha = $_POST["codborracha"];
 
     $tipoem = $_POST["tipoem"];
+    $codtipoem = $_POST["codtipoem"];
 
     $lag_bat = $_POST["lag_bat"];
     $tip_bat = $_POST["tip_bat"];
@@ -53,9 +69,13 @@ if(isset($_POST['submit']))
     $resultado1 = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
     lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,altolho,fechadurad,barra,coluna,manuall,entr,calco,biometria,
     digital,perfil,capadobri,dobradica,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada',
-    '$data_previsao','$modelo','$largura','$altura','$lado','$sentido','$acabint','$acabext','$ferragens','$cilindroP','$cilindroS','$servico',
-    '$numero','$obsmk','$olho','$altolho','$fechadurad','$barra','$coluna','$manuall','$entr','$calco','$biometria','$digital','$perfil','$capadobri',
+    '$data_previsao','$modelo','$largura','$altura','$lado','$sentido','$acabint','$acabext','$inputferragens','$cilindroP','$cilindroS','$servico',
+    '$numero','$obsmk','$inputolho','$altolho','$inputfechadurad','$inputbarra','$coluna','$manuall','$inputentr','$inputcalco','$inputbiometria','$digital','$perfil','$capadobri',
     '$dobradica','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
+
+    $resultado2 = mysqli_query($conexao, "INSERT INTO codigos (codferragens,codcilindroP,codcilindroS,codolho,codfechadurad,codbarra,codentr,
+    codcalco,codbiometria,coddigital,codcapadobri,coddobradica,codtipoem) VALUES('$codferragens','$codcilindroP','$codcilindroS','$codolho',
+    '$codfechadurad','$codbarra','$codentr','$codcalco','$codbiometria','$coddigital','$codcapadobri','$coddobradica','$codborracha','$codtipoem')");
 
 
 }
@@ -88,6 +108,7 @@ if(isset($_POST['submit']))
 
             var inputolho = document.getElementById("inputolho")
             var codolho = document.getElementById("codolho")
+            var altolho = document.getElementById("altolho")
 
             var inputfechadurad = document.getElementById("inputfechadurad")
             var codfechadurad = document.getElementById("codfechadurad")
@@ -113,10 +134,10 @@ if(isset($_POST['submit']))
             var tipoem = document.getElementById("tipoem")
             var codtipoem = document.getElementById("codtipoem")
 
-            var altura = document.getElementById("altura").value
-            var lado = document.getElementById("lado").value
-            var acabint = document.getElementById("acabint").value
-            var acabext = document.getElementById("acabext").value
+            var altura = document.getElementById("altura")
+            var lado = document.getElementById("lado")
+            var acabint = document.getElementById("acabint")
+            var acabext = document.getElementById("acabext")
             var laterais = document.getElementById("laterais")
             var batlad = document.getElementById("batlad")
             var tip_bat = document.getElementById("tip_bat")
@@ -148,7 +169,7 @@ if(isset($_POST['submit']))
 
             }
 
-            if(inputferragens.value == "" && "PUXADOR"){
+            if(inputferragens.value == "PUXADOR" || inputferragens.value == ""){
                 codferragens.setAttribute("value", "")
 
             } else if (inputferragens.value == "FECHADURA PLASTICA"){
@@ -228,12 +249,16 @@ if(isset($_POST['submit']))
 
             if(inputolho.value == ""){
                 codolho.setAttribute("value", "")
+                altolho.setAttribute("value","")
 
             } else if (inputolho.value == "OLHO MAGICO CR"){
                 codolho.setAttribute("value", "021392")
+                altolho.setAttribute("value","1500mm")
+
 
             }  else if (inputolho.value == "OLHO MAGICO LP"){
                 codolho.setAttribute("value", "021390")
+                altolho.setAttribute("value","1500mm")
                 
             }
 
@@ -325,7 +350,7 @@ if(isset($_POST['submit']))
                 
             }
 
-            if(tipoem.value == "" && "MANTA"){
+            if(tipoem.value == "" || tipoem.value == "MANTA"){
                 codtipoem.setAttribute("value", "")
 
             } else if (tipoem.value == "CAIXA DE MADEIRA 250x1230X2250"){
@@ -334,6 +359,95 @@ if(isset($_POST['submit']))
             }  else if (tipoem.value == "CAIXA DE MADEIRA 250x1550X2250"){
                 codtipoem.setAttribute("value", "030086")
                 
+            }
+
+            if(laterais.value !== null){
+                laterais.setAttribute("value", altura.value)
+
+            } else {
+                laterais.setAttribute("value", "")
+            }
+
+            if(lado.value == "DIREITA"){
+                batlad.setAttribute("value", "DIREITA")
+
+            }else if(lado.value == "ESQUERDA"){
+                batlad.setAttribute("value", "ESQUERDA")
+
+            }else {
+                batlad.setAttribute("value", "")
+            }
+
+            if((acabint.value == "AÇO" || acabint.value == "PVC BRANCO" || acabint.value == "PVC CINZA") && (acabext.value == "AÇO" ||
+            acabext.value == "PVC BRANCO" || acabext.value == "PVC CINZA")){
+                tip_bat.setAttribute("value", "NORMAL")
+
+            }else if((acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" || acabint.value == "FORMICA TX NOGAL" ||
+            acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || acabext.value == "PREPARADO P/PINTURA" || 
+            acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
+                tip_bat.setAttribute("value", "PROFUNDO")
+
+            }else if(acabint.value == null && acabext.value == null){
+                tip_bat.setAttribute("value", "")
+
+            } else {
+                tip_bat.setAttribute("value", "")
+                
+            }
+
+            if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465" ||
+            modelo.value == "467" || modelo.value == "468") && (acabint.value == "AÇO" || acabint.value == "PVC BRANCO" ||
+            acabint.value == "PVC CINZA") && (acabext.value == "AÇO" || acabext.value == "PVC BRANCO" ||acabext.value == "PVC CINZA") && 
+            (inputentr.value == "BRANCO" || inputentr.value == "PRETA")){
+                cilindroP.setAttribute("value", "CIL ENTR 70 P.236S COM 1 CHAVE")
+
+            } else if((modelo.value == "467" || modelo.value == "468" || modelo.value == "469" || modelo.value == "470" ||
+            modelo.value == "470" || modelo.value == "471" || modelo.value == "472") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
+            acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
+            acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ") &&
+            (inputentr.value == "BRANCO" || inputentr.value == "PRETA")){
+                cilindroP.setAttribute("value", "CIL ENTR 73 P.236S COM 1 CHAVE")
+
+            } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465" ||
+            modelo.value == "467" || modelo.value == "468") && (acabint.value == "AÇO" || acabint.value == "PVC BRANCO" ||
+            acabint.value == "PVC CINZA") && (acabext.value == "AÇO" || acabext.value == "PVC BRANCO" || acabext.value == "PVC CINZA")){
+                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+            
+            } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465") &&
+            (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
+            acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
+            acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
+                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+
+            } else if((modelo.value == "467" || modelo.value == "468" || modelo.value == "469" || modelo.value == "470" ||
+            modelo.value == "470" || modelo.value == "471" || modelo.value == "472") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
+            acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
+            acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
+                cilindroP.setAttribute("value", "CIL 81 P.236S COM 5 CHAVES")
+
+            } else {
+                cilindroP.setAttribute("value", "")
+
+            }
+
+            if((modelo.value == "465" || modelo.value == "467" || modelo.value == "468") && (acabint.value == "PVC BRANCO" ||
+            acabint.value == "PVC CINZA") && (acabint.value == "PVC BRANCO" || acabint.value == "PVC CINZA")){
+                inputcalco.setAttribute("value", "CALÇO DE 01 a 03mm")
+
+            }else if((modelo.value == "465" || modelo.value == "467" || modelo.value == "468" || modelo.value == "470" || modelo.value == "471" ||
+            modelo.value == "472") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
+            acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
+            acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
+                inputcalco.setAttribute("value", "CALÇO DE 04 a 08mm")
+
+            }else if((modelo.value == "463") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
+            acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
+            acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
+                inputcalco.setAttribute("value", "CALÇO DE 09 a 12mm")
+
+            } else {
+                inputcalco.setAttribute("value", "")
+
             }
 
         }
@@ -421,9 +535,6 @@ if(isset($_POST['submit']))
         <option>Não</option>
     </datalist>
 
-    <datalist id="oalt">
-        <option>1500mm</option>
-    </datalist>
 
     <datalist id="olho">
         <option>OLHO MAGICO CR</option>
@@ -487,7 +598,7 @@ if(isset($_POST['submit']))
 
     <form action="Cadastro.php" method="POST">
         <div id="nome">
-            <input type="text" placeholder="NOME DO CLIENTE" name="nome_cliente">
+            <input type="text" placeholder="NOME DO CLIENTE" onchange="script()" name="nome_cliente">
         </div>
 
         <div id="dados">
@@ -499,26 +610,26 @@ if(isset($_POST['submit']))
 
         <div id="medida">
             <u><h3>Medidas</h3></u>
-            Modelo <input type="text" list="mod" onkeyup="script()" name="modelo" id="modelo" value=""><br>
+            Modelo <input type="text" list="mod" onchange="script()" name="modelo" id="modelo" value=""><br>
             Largura <input type="text" list="lag" name="largura"><br>
-            Altura <input type="text" onkeyup="script()" id="altura" name="altura" value="2085"><br>
-            Lado de abertura <input type="text" onkeyup="script()" list="lad" id="lado" name="lado" value=""><br>
+            Altura <input type="text" onchange="script()" id="altura" name="altura" value="2085"><br>
+            Lado de abertura <input type="text" onchange="script()" list="lad" id="lado" name="lado" value=""><br>
             Sentido de abertura<input type="text" list="sent" name="sentido">
         </div><hr>
 
         <div id="acabamento">
             <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" onkeyup="script()" list="ladin" id="acabint" name="acabint" value=""><br>
-            Acabamento Externo <input type="text" onkeyup="script()" list="ladex" id="acabext" name="acabext" value=""><br>
+            Acabamento Interno <input type="text" onchange="script()" list="ladin" id="acabint" name="acabint" value=""><br>
+            Acabamento Externo <input type="text" onchange="script()" list="ladex" id="acabext" name="acabext" value=""><br>
         </div><hr>
 
         <div id="kits">
             <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" onkeyup="script()" id="inputferragens" name="inputferragens" value=""><br>
+            Ferragens <input type="text" list="ferragens" onchange="script()" id="inputferragens" name="inputferragens" value=""><br>
             <input type="text" name="codferragens" id="codferragens" value="">
-            Cilindro Principal <input type="text" list="cilindro" onkeyup="script()" id="cilindroP" name="cilindroP" value=""><br>
+            Cilindro Principal <input type="text" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" value=""><br>
             <input type="text" name="codcilindroP" id="codcilindroP" value="">
-            Cilindro Secundário <input type="text" list="cilindro" onkeyup="script()" id="cilindroS" name="cilindroS" value=""><br>
+            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" value=""><br>
             <input type="text" name="codcilindroS" id="codcilindroS" value="">
         </div><hr><hr>
 
@@ -531,12 +642,12 @@ if(isset($_POST['submit']))
 
         <div id="complementos">
             <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="olho" onkeyup="script()" id="inputolho" name="inputolho" value="">
-            Altura do Olho <input type="text" list="oalt" id="altolho" name="altolho" value=""><br>
+            Olho Mágico <input type="text" list="olho" onchange="script()" id="inputolho" name="inputolho" value="">
+            Altura do Olho <input type="text" id="altolho" name="altolho" value=""><br>
             <input type="text" name="codolho" id="codolho" value="">
-            Fechadura Adicional <input type="text" list="fechadura" onkeyup="script()" id="inputfechadurad" name="inputfechadurad" value=""><br>
+            Fechadura Adicional <input type="text" list="fechadura" onchange="script()" id="inputfechadurad" name="inputfechadurad" value=""><br>
             <input type="text" name="codfechadurad" id="codfechadurad" value="">
-            Barra Antipanico <input type="text" list="barra" onkeyup="script()" id="inputbarra" name="inputbarra" value=""><br>
+            Barra Antipanico <input type="text" list="barra" onchange="script()" id="inputbarra" name="inputbarra" value=""><br>
             <input type="text" name="codbarra" id="codbarra" value="">
             Coluna Central <input type="text" list="esch" name="coluna"><br>
             <input type="text" name="manuall" id="manuall">
@@ -544,30 +655,30 @@ if(isset($_POST['submit']))
             
             
             <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="entr" onkeyup="script()" id="inputentr" name="inputentr" value=""><br>
+            Fechadura Entr <input type="text" list="entr" onchange="script()" id="inputentr" name="inputentr" value=""><br>
             <input type="text" name="codentr" id="codentr" value="">
-            Calço <input type="text" list="calco" onkeyup="script()" id="inputcalco" name="inputcalco" value=""><br>
+            Calço <input type="text" list="calco" onchange="script()" id="inputcalco" name="inputcalco" value=""><br>
             <input type="text" name="codcalco" id="codcalco" value="">
-            Biometria <input type="text" list="biometria" onkeyup="script()" id="inputbiometria" name="inputbiometria" value=""><br>
+            Biometria <input type="text" list="biometria" onchange="script()" id="inputbiometria" name="inputbiometria" value=""><br>
             <input type="text" name="codbiometria" id="codbiometria" value="">
-            Teclado <input type="text" list="teclado" onkeyup="script()" id="digital" name="digital" value=""><br>
+            Teclado <input type="text" list="teclado" onchange="script()" id="digital" name="digital" value=""><br>
             <input type="text" name="coddigital" id="coddigital" value="">
         </div><hr>
 
         <div id="plasticos">
             <u><h3>Plasticos</h3></u>
             Perfil <input type="text" list="plasticos" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onkeyup="script()" id="capadobri" name="capadobri" value=""><br>
+            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onchange="script()" id="capadobri" name="capadobri" value=""><br>
             <input type="text" name="codcapadobri" id="codcapadobri" value="">
             <input type="text" name="dobradica" id="dobradica" value="">
             <input type="text" name="coddobradica" id="coddobradica" value="">
-            Borracha de Vedação <input type="text" list="plasticos" onkeyup="script()" id="borracha" name="borracha" value=""><br>
+            Borracha de Vedação <input type="text" list="plasticos" onchange="script()" id="borracha" name="borracha" value=""><br>
             <input type="text" name="codborracha" id="codborracha" value="">
         </div><hr><hr>
 
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" onkeyup="script()" id="tipoem"  name="tipoem" value=""><br>
+            Embalagem <input type="text" list="tipo" onchange="script()" id="tipoem"  name="tipoem" value=""><br>
             <input type="text" name="codtipoem" id="codtipoem" value="">
         </div><hr>
 
