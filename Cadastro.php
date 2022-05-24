@@ -39,6 +39,7 @@ if(isset($_POST['submit']))
     $codbarra = $_POST["codbarra"];
     $coluna = $_POST["coluna"];
     $manuall = $_POST["manuall"];
+    $codmanuall = $_POST["codmanuall"];
 
     $inputentr = $_POST["inputentr"];
     $codentr = $_POST["codentr"];
@@ -61,21 +62,22 @@ if(isset($_POST['submit']))
     $tipoem = $_POST["tipoem"];
     $codtipoem = $_POST["codtipoem"];
 
+
     $lag_bat = $_POST["lag_bat"];
     $tip_bat = $_POST["tip_bat"];
 
     $obs = $_POST["obs"];
 
     $resultado1 = mysqli_query($conexao, "INSERT INTO registros (nome_cliente,talao,microsiga,data_entrada,data_previsao,modelo,largura,altura,
-    lado,sentido,acabint,acabext,ferragens,cilindroP,cilindroS,servico,numero,obsmk,olho,altolho,fechadurad,barra,coluna,manuall,entr,calco,biometria,
+    lado,sentido,acabint,acabext,inputferragens,cilindroP,cilindroS,servico,numero,obsmk,inputolho,altolho,inputfechadurad,inputbarra,coluna,manuall,inputentr,inputcalco,inputbiometria,
     digital,perfil,capadobri,dobradica,borracha,tipoem,lag_bat,tip_bat,obs) VALUES('$nome_cliente','$talao','$microsiga','$data_entrada',
     '$data_previsao','$modelo','$largura','$altura','$lado','$sentido','$acabint','$acabext','$inputferragens','$cilindroP','$cilindroS','$servico',
     '$numero','$obsmk','$inputolho','$altolho','$inputfechadurad','$inputbarra','$coluna','$manuall','$inputentr','$inputcalco','$inputbiometria','$digital','$perfil','$capadobri',
     '$dobradica','$borracha','$tipoem','$lag_bat','$tip_bat','$obs')");
 
-    $resultado2 = mysqli_query($conexao, "INSERT INTO codigos (codferragens,codcilindroP,codcilindroS,codolho,codfechadurad,codbarra,codentr,
-    codcalco,codbiometria,coddigital,codcapadobri,coddobradica,codtipoem) VALUES('$codferragens','$codcilindroP','$codcilindroS','$codolho',
-    '$codfechadurad','$codbarra','$codentr','$codcalco','$codbiometria','$coddigital','$codcapadobri','$coddobradica','$codborracha','$codtipoem')");
+    $resultado2 = mysqli_query($conexao, "INSERT INTO codigos (codferragens,codcilindroP,codcilindroS,codolho,codfechadurad,codbarra,codmanuall,codentr,
+    codcalco,codbiometria,coddigital,codcapadobri,coddobradica,codborracha,codtipoem) VALUES('$codferragens','$codcilindroP','$codcilindroS','$codolho',
+    '$codfechadurad','$codbarra','$codmanuall','$codentr','$codcalco','$codbiometria','$coddigital','$codcapadobri','$coddobradica','$codborracha','$codtipoem')");
 
 
 }
@@ -610,84 +612,84 @@ if(isset($_POST['submit']))
 
         <div id="medida">
             <u><h3>Medidas</h3></u>
-            Modelo <input type="text" list="mod" onchange="script()" name="modelo" id="modelo" value=""><br>
+            Modelo <input type="text" list="mod" onchange="script()" name="modelo" id="modelo"><br>
             Largura <input type="text" list="lag" name="largura"><br>
             Altura <input type="text" onchange="script()" id="altura" name="altura" value="2085"><br>
-            Lado de abertura <input type="text" onchange="script()" list="lad" id="lado" name="lado" value=""><br>
+            Lado de abertura <input type="text" onchange="script()" list="lad" id="lado" name="lado"><br>
             Sentido de abertura<input type="text" list="sent" name="sentido">
         </div><hr>
 
         <div id="acabamento">
             <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" onchange="script()" list="ladin" id="acabint" name="acabint" value=""><br>
-            Acabamento Externo <input type="text" onchange="script()" list="ladex" id="acabext" name="acabext" value=""><br>
+            Acabamento Interno <input type="text" onchange="script()" list="ladin" id="acabint" name="acabint" ><br>
+            Acabamento Externo <input type="text" onchange="script()" list="ladex" id="acabext" name="acabext" ><br>
         </div><hr>
 
         <div id="kits">
             <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" onchange="script()" id="inputferragens" name="inputferragens" value=""><br>
-            <input type="text" name="codferragens" id="codferragens" value="">
-            Cilindro Principal <input type="text" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" value=""><br>
-            <input type="text" name="codcilindroP" id="codcilindroP" value="">
-            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" value=""><br>
-            <input type="text" name="codcilindroS" id="codcilindroS" value="">
+            Ferragens <input type="text" list="ferragens" onchange="script()" id="inputferragens" name="inputferragens" ><br>
+            <input type="text" name="codferragens" id="codferragens" >
+            Cilindro Principal <input type="text" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" ><br>
+            <input type="text" name="codcilindroP" id="codcilindroP" >
+            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" ><br>
+            <input type="text" name="codcilindroS" id="codcilindroS" >
         </div><hr><hr>
 
         <div id="master">
             <u><h3>Master Key</h3></u>
-            Tipo de Serviço <input type="text" list="mkserv" id="servico" name="servico" value=""><br>
+            Tipo de Serviço <input type="text" list="mkserv" id="servico" name="servico" ><br>
             Quantidade de Chaves <input type="text" id="qtdk" name="numero"><br>
-            Observação <input type="text" id="obsmk" name="obsmk" value=""><br>
+            Observação <input type="text" id="obsmk" name="obsmk" ><br>
         </div><hr>
 
         <div id="complementos">
             <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="olho" onchange="script()" id="inputolho" name="inputolho" value="">
-            Altura do Olho <input type="text" id="altolho" name="altolho" value=""><br>
-            <input type="text" name="codolho" id="codolho" value="">
-            Fechadura Adicional <input type="text" list="fechadura" onchange="script()" id="inputfechadurad" name="inputfechadurad" value=""><br>
-            <input type="text" name="codfechadurad" id="codfechadurad" value="">
-            Barra Antipanico <input type="text" list="barra" onchange="script()" id="inputbarra" name="inputbarra" value=""><br>
-            <input type="text" name="codbarra" id="codbarra" value="">
+            Olho Mágico <input type="text" list="olho" onchange="script()" id="inputolho" name="inputolho" >
+            Altura do Olho <input type="text" id="altolho" name="altolho" ><br>
+            <input type="text" name="codolho" id="codolho" >
+            Fechadura Adicional <input type="text" list="fechadura" onchange="script()" id="inputfechadurad" name="inputfechadurad" ><br>
+            <input type="text" name="codfechadurad" id="codfechadurad" >
+            Barra Antipanico <input type="text" list="barra" onchange="script()" id="inputbarra" name="inputbarra" ><br>
+            <input type="text" name="codbarra" id="codbarra" >
             Coluna Central <input type="text" list="esch" name="coluna"><br>
             <input type="text" name="manuall" id="manuall">
-            <input type="text" id="codmanuall" name="manuall" value="">
+            <input type="text" id="codmanuall" name="codmanuall" >
             
             
             <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="entr" onchange="script()" id="inputentr" name="inputentr" value=""><br>
-            <input type="text" name="codentr" id="codentr" value="">
-            Calço <input type="text" list="calco" onchange="script()" id="inputcalco" name="inputcalco" value=""><br>
-            <input type="text" name="codcalco" id="codcalco" value="">
-            Biometria <input type="text" list="biometria" onchange="script()" id="inputbiometria" name="inputbiometria" value=""><br>
-            <input type="text" name="codbiometria" id="codbiometria" value="">
-            Teclado <input type="text" list="teclado" onchange="script()" id="digital" name="digital" value=""><br>
-            <input type="text" name="coddigital" id="coddigital" value="">
+            Fechadura Entr <input type="text" list="entr" onchange="script()" id="inputentr" name="inputentr" ><br>
+            <input type="text" name="codentr" id="codentr" >
+            Calço <input type="text" list="calco" onchange="script()" id="inputcalco" name="inputcalco" ><br>
+            <input type="text" name="codcalco" id="codcalco" >
+            Biometria <input type="text" list="biometria" onchange="script()" id="inputbiometria" name="inputbiometria" ><br>
+            <input type="text" name="codbiometria" id="codbiometria" >
+            Teclado <input type="text" list="teclado" onchange="script()" id="digital" name="digital" ><br>
+            <input type="text" name="coddigital" id="coddigital" >
         </div><hr>
 
         <div id="plasticos">
             <u><h3>Plasticos</h3></u>
             Perfil <input type="text" list="plasticos" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onchange="script()" id="capadobri" name="capadobri" value=""><br>
-            <input type="text" name="codcapadobri" id="codcapadobri" value="">
-            <input type="text" name="dobradica" id="dobradica" value="">
-            <input type="text" name="coddobradica" id="coddobradica" value="">
-            Borracha de Vedação <input type="text" list="plasticos" onchange="script()" id="borracha" name="borracha" value=""><br>
-            <input type="text" name="codborracha" id="codborracha" value="">
+            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onchange="script()" id="capadobri" name="capadobri" ><br>
+            <input type="text" name="codcapadobri" id="codcapadobri" >
+            <input type="text" name="dobradica" id="dobradica" >
+            <input type="text" name="coddobradica" id="coddobradica" >
+            Borracha de Vedação <input type="text" list="plasticos" onchange="script()" id="borracha" name="borracha" ><br>
+            <input type="text" name="codborracha" id="codborracha" >
         </div><hr><hr>
 
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" onchange="script()" id="tipoem"  name="tipoem" value=""><br>
-            <input type="text" name="codtipoem" id="codtipoem" value="">
+            Embalagem <input type="text" list="tipo" onchange="script()" id="tipoem"  name="tipoem" ><br>
+            <input type="text" name="codtipoem" id="codtipoem" >
         </div><hr>
 
         <div id="bat">
             <u><h3>Batente</h3></u>
-            Laterais <input type="text" id="laterais" name="laterais" value=""><br>
-            Lado <input type="text" id="batlad" name="batlad" value=""><br>
+            Laterais <input type="text" id="laterais" name="laterais" ><br>
+            Lado <input type="text" id="batlad" name="batlad" ><br>
             Largura do Batente <input type="text" list="lb" name="lag_bat"><br>
-            Tipo <input type="text" name="tip_bat" id="tip_bat" value=""><br>
+            Tipo <input type="text" name="tip_bat" id="tip_bat" ><br>
         </div>
 
         <div id="obs">
