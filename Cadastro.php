@@ -155,7 +155,7 @@ if(isset($_POST['submit']))
                 dobradica.setAttribute("value","KIT DOBRADIÇA COM BOLT CR P/463 CN")
                 coddobradica.setAttribute("value", "050406")
                 manuall.setAttribute("value", "MANUAL DE INSTALAÇÃO DA PORTA 463 E-COMMERCE")
-                codmanuall.setAttribute("value", "025772")
+                codmanuall.setAttribute("value", "021562")
 
             }else if(modelo.value == ""){
                 dobradica.setAttribute("value","")
