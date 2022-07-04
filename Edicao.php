@@ -6,85 +6,79 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
     $id = $_POST["enedit"];
     
     
-    $consulta1 = "SELECT * FROM registros WHERE talao = '$id' ";
+    $consulta = "SELECT * FROM registros WHERE talao = '$id' ";
 
-    $result1 = $conexao->query($consulta1);
+    $result = $conexao->query($consulta);
 
-    if($consulta1 == true){
-        $consulta2 = "SELECT * FROM codigos ";
-        $result2 = $conexao->query($consulta2);
-    }
-    
+        if($result->num_rows > 0){
 
-        if($result1->num_rows > 0){
-
-            while($dado1 = mysqli_fetch_assoc($result1)){
-                while($dado2 = mysqli_fetch_assoc($result2)){
+            while($dado = mysqli_fetch_assoc($result)){
                 
-                $nome_cliente = $dado1["nome_cliente"];
-                $talao = $dado1["talao"];
-                $microsiga = $dado1["microsiga"];
-                $data_entrada = $dado1["data_entrada"];
-                $data_previsao = $dado1["data_previsao"];
+                $nome_cliente = $dado["nome_cliente"];
+                $talao = $dado["talao"];
+                $microsiga = $dado["microsiga"];
+                $data_entrada = $dado["data_entrada"];
+                $data_previsao = $dado["data_previsao"];
             
-                $modelo = $dado1["modelo"];
-                $largura = $dado1["largura"];
-                $altura = $dado1["altura"];
-                $lado = $dado1["lado"];
-                $sentido = $dado1["sentido"];
+                $modelo = $dado["modelo"];
+                $largura = $dado["largura"];
+                $altura = $dado["altura"];
+                $lado = $dado["lado"];
+                $sentido = $dado["sentido"];
             
-                $acabint = $dado1["acabint"];
-                $acabext = $dado1["acabext"];
+                $acabint = $dado["acabint"];
+                $acabext = $dado["acabext"];
             
-                $inputferragens = $dado1["inputferragens"];
-                $codferragens = $dado2["codferragens"];
-                $cilindroP = $dado1["cilindroP"];
-                $codcilindroP = $dado2["codcilindroP"];
-                $cilindroS = $dado1["cilindroS"];
-                $codcilindroS = $dado2["codcilindroS"];
+                $inputferragens = $dado["inputferragens"];
+                $codferragens = $dado["codferragens"];
+                $cilindroP = $dado["cilindroP"];
+                $codcilindroP = $dado["codcilindroP"];
+                $cilindroS = $dado["cilindroS"];
+                $codcilindroS = $dado["codcilindroS"];
             
-                $servico = $dado1["servico"];
-                $numero = $dado1["numero"];
-                $obsmk = $dado1["obsmk"];
+                $servico = $dado["servico"];
+                $numero = $dado["numero"];
+                $obsmk = $dado["obsmk"];
             
-                $inputolho = $dado1["inputolho"];
-                $altolho = $dado1["altolho"];
-                $codolho = $dado2["codolho"];
-                $inputfechadurad = $dado1["inputfechadurad"];
-                $codfechadurad = $dado2["codfechadurad"];
-                $inputbarra = $dado1["inputbarra"];
-                $codbarra = $dado2["codbarra"];
-                $coluna = $dado1["coluna"];
-                $manuall = $dado1["manuall"];
-                $codmanuall = $dado2["codmanuall"];
+                $inputolho = $dado["inputolho"];
+                $altolho = $dado["altolho"];
+                $codolho = $dado["codolho"];
+                $inputfechadurad = $dado["inputfechadurad"];
+                $codfechadurad = $dado["codfechadurad"];
+                $inputbarra = $dado["inputbarra"];
+                $codbarra = $dado["codbarra"];
+                $coluna = $dado["coluna"];
+                $manuall = $dado["manuall"];
+                $codmanuall = $dado["codmanuall"];
             
-                $inputentr = $dado1["inputentr"];
-                $codentr = $dado2["codentr"];
-                $inputcalco = $dado1["inputcalco"];
-                $codcalco = $dado2["codcalco"];
-                $inputbiometria = $dado1["inputbiometria"];
-                $codbiometria = $dado2["codbiometria"];
-                $digital = $dado1["digital"];
-                $coddigital = $dado2["coddigital"];
-            
-            
-                $perfil = $dado1["perfil"];
-                $capadobri = $dado1["capadobri"];
-                $codcapadobri = $dado2["codcapadobri"];
-                $dobradica = $dado1["dobradica"];
-                $coddobradica = $dado2["coddobradica"];
-                $borracha = $dado1["borracha"];
-                $codborracha = $dado2["codborracha"];
-            
-                $tipoem = $dado1["tipoem"];
-                $codtipoem = $dado2["codtipoem"];
+                $inputentr = $dado["inputentr"];
+                $codentr = $dado["codentr"];
+                $inputcalco = $dado["inputcalco"];
+                $codcalco = $dado["codcalco"];
+                $inputbiometria = $dado["inputbiometria"];
+                $codbiometria = $dado["codbiometria"];
+                $digital = $dado["digital"];
+                $coddigital = $dado["coddigital"];
             
             
-                $lag_bat = $dado1["lag_bat"];
-                $tip_bat = $dado1["tip_bat"];
+                $perfil = $dado["perfil"];
+                $capadobri = $dado["capadobri"];
+                $codcapadobri = $dado["codcapadobri"];
+                $dobradica = $dado["dobradica"];
+                $coddobradica = $dado["coddobradica"];
+                $borracha = $dado["borracha"];
+                $codborracha = $dado["codborracha"];
             
-                $obs = $dado1["obs"];
-                }
+                $tipoem = $_POST["tipoem"];
+                $codcamad = $_POST["codcamad"];
+                $camad = $_POST["camad"];
+            
+            
+                $lag_bat = $dado["lag_bat"];
+                $tip_bat = $dado["tip_bat"];
+                $corbat = $dado["corbat"];
+            
+                $obs = $dado["obs"];
 
             }
 
@@ -145,7 +139,7 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
             var codborracha = document.getElementById("codborracha")
 
             var tipoem = document.getElementById("tipoem")
-            var codtipoem = document.getElementById("codtipoem")
+            var camad = document.getElementById("camad")
 
             var altura = document.getElementById("altura")
             var lado = document.getElementById("lado")
@@ -463,6 +457,13 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
             }
 
+            if(tipoem.value == "CAIXA DE MADEIRA"){
+                camad.disabled = false
+
+            } else {
+                camad.disabled = true
+            }
+
         }
     </script>
 </head>
@@ -599,8 +600,7 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
     <datalist id="tipo">
         <option>MANTA</option>
-        <option>CAIXA DE MADEIRA 250x1230X2250</option>
-        <option>CAIXA DE MADEIRA 250x1550X2250</option>
+        <option>CAIXA DE MADEIRA</option>
     </datalist>
 
     <datalist id="lb">
@@ -642,7 +642,7 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
             <input type="text" name="codferragens" id="codferragens" value="<?php echo $codferragens?>">
             Cilindro Principal <input type="text" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" value="<?php echo $cilindroP ?>"><br>
             <input type="text" name="codcilindroP" id="codcilindroP" value="<?php echo $codcilindroP?>">
-            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" value="<?php echo $codcilindroP ?>"><br>
+            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" value="<?php echo $cilindroS ?>"><br>
             <input type="text" name="codcilindroS" id="codcilindroS" value="<?php echo $codcilindroS?>">
         </div><hr><hr>
 
@@ -692,7 +692,8 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
         <div id="embalagem">
             <u><h3>Embalagens</h3></u>
             Embalagem <input type="text" list="tipo" onchange="script()" id="tipoem"  name="tipoem" value="<?php echo $tipoem ?>"><br>
-            <input type="text" name="codtipoem" id="codtipoem" value="<?php echo $codtipoem ?>">
+            Caixa De Madeira <input type="text" disabled onchange="script()" name="camad" id="camad" value="<?php echo $camad ?>">
+            <input type=text name="codcamad" id="codcamad" value="<?php echo $codcamad ?>">
         </div><hr>
 
         <div id="bat">
@@ -700,6 +701,7 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
             Laterais <input type="text" id="laterais" name="laterais" value="<?php echo $altura ?>"><br>
             Lado <input type="text" id="batlad" name="batlad" value="<?php echo $lado ?>"><br>
             Largura do Batente <input type="text" list="lb" name="lag_bat" value="<?php echo $lag_bat ?>"><br>
+            Cor do Batente<input type="text" name="corbat" id="corbat" value="<?php echo $corbat ?>"><br>
             Tipo <input type="text" name="tip_bat" id="tip_bat" value="<?php echo $tip_bat ?>"><br>
         </div>
 

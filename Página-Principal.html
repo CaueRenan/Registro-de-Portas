@@ -1,11 +1,3 @@
-<?php
-include_once("conexão.php");
-
-$consulta = "SELECT * FROM registros";
-
-$verificar = mysqli_query($conexao, $consulta);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -41,6 +33,35 @@ $verificar = mysqli_query($conexao, $consulta);
             if(talaopl.value == ""){
                 talaopl.setAttribute("value", resgat)
             }
+
+        }
+
+        function comparar(){
+            var presgat = prompt("Digite a Data Inicial")
+            var dataini = document.getElementById("dataini")
+            
+
+            if(dataini.value == ""){
+                var convert1 = presgat.split('/').reverse().join('-')
+                dataini.setAttribute("value", convert1)
+
+            }
+
+            if(dataini != ""){
+                var sresgat = prompt("Digite a Data Final");
+                var convert2 = sresgat.split('/').reverse().join('-')
+                datafin.setAttribute("value", convert2)
+            }
+
+        }
+
+        function produto(){
+            var codprod = prompt("Digite o Código do Produto")
+            var codigo = document.getElementById("codigo")
+
+            if(codigo.value == ""){
+                codigo.setAttribute("value", codprod)
+            }
         }
     </script>
 
@@ -61,43 +82,24 @@ $verificar = mysqli_query($conexao, $consulta);
     </form>
 
     <form action="Edicao.php" method="POST">
-        <input type="hidden" name="enedit" id="enedit" value=""> 
-        <button href="Edicao.php" name="edit" onclick="clicar()">EDITAR</button>
+        <input type="hidden" name="enedit" id="enedit" value="">
+        <button href="Edicao.php" name="edit" onclick="clicar()">PESQUISA E EDIÇÃO DE PORTAS</button>
     </form>
-    <table>
-        <tr>
-            <th>PREVISÃO</th>
-            <th>TALÃO</th>
-            <th>MICROSIGA</th>
-            <th>CLIENTE</th>
-            <th>LARGURA</th>
-            <th>ALTURA</th>
-            <th>LADO</th>
-            <th>MODELO</th>
-            <th>ACABAMENTO</th>
-            <th>ENTRADA</th>
-            <th>BATENTE</th>
-            <th>OBSERVAÇÃO</th>
-        </tr>
-    <?php
-        while($dados = mysqli_fetch_assoc($verificar))
-        {
-            echo "<tr>";
-            echo "<td>" .date("m/d/y", strtotime($dados['data_previsao']))."</td>";
-            echo "<td>".$dados['talao']."</td>";
-            echo "<td>".$dados['microsiga']."</td>";
-            echo "<td>".$dados['nome_cliente']."</td>";
-            echo "<td>".$dados['largura']."</td>";
-            echo "<td>".$dados['altura']."</td>";
-            echo "<td>".$dados['lado']."</td>";
-            echo "<td>".$dados['modelo']."</td>";
-            echo "<td>".$dados['acabint']. " x " .$dados['acabext']."</td>";
-            echo "<td>".date("m/d/y", strtotime($dados['data_entrada']))."</td>";
-            echo "<td>".$dados['lag_bat']."</td>";
-            echo "<td>".$dados['obs']."</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
+
+    <form action="ProgramaçãoDePortas.php" method="POST">
+        <input type="hidden" name="dataini" id="dataini" value="">
+        <input type="hidden" name="datafin" id="datafin" value="">
+        <button href="ProgramaçãoDePortas.php" name="busca" onclick="comparar()">PROGRAMAÇÃO DE PORTAS</button>
+    </form>
+
+    <a href="CadastroDeProduto.php">
+        <button name="link">CADASTRO DE PRODUTOS</button>
+    </a>
+
+    <form action="EditarProdutos.php" method="POST">
+        <input type="hidden" name="codigo" id="codigo">
+        <button href="EditarProdutos.php" name="bcodi" onclick="produto()">EDIÇÃO DE PRODUTOS</button>
+    </form>
+
 </body>
 </html>
