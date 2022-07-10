@@ -10,7 +10,7 @@ if(isset($_POST["imeti"]) && !empty($_POST["talaoeti"])){
     $conc = $conexao->query($verificar);
 
     if(mysqli_num_rows($conc) < 1){
-        header("Location:Pesquisa.php");
+        header("Location:Cadastro.php");
     };
 }
 ?>
@@ -33,6 +33,9 @@ if(isset($_POST["imeti"]) && !empty($_POST["talaoeti"])){
     }
 </style>
 <body>
+    <a href="Cadastro.php">
+        <button id="bvolta">VOLTAR</button>
+    </a>
     <table>
         <?php
             while($dados = mysqli_fetch_assoc($conc)){

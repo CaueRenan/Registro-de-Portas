@@ -1,12 +1,13 @@
 <?php
 include_once('conexão.php');
 
-if(isset($_POST['update'])){
+if(isset($_POST["update"])){
 
     $id = $_POST["id"];
-    $nome_cliente = $_POST["nome_cliente"];
+
     $talao = $_POST["talao"];
     $microsiga = $_POST["microsiga"];
+    $nome_cliente = $_POST["nome_cliente"];
     $data_entrada = $_POST["data_entrada"];
     $data_previsao = $_POST["data_previsao"];
 
@@ -16,76 +17,77 @@ if(isset($_POST['update'])){
     $lado = $_POST["lado"];
     $sentido = $_POST["sentido"];
 
+    $codacabint = $_POST["codacabint"];
     $acabint = $_POST["acabint"];
+    $codacabext = $_POST["codacabext"];
     $acabext = $_POST["acabext"];
 
-    $inputferragens = $_POST["inputferragens"];
     $codferragens = $_POST["codferragens"];
-    $cilindroP = $_POST["cilindroP"];
+    $inputferragens = $_POST["inputferragens"];
     $codcilindroP = $_POST["codcilindroP"];
-    $cilindroS = $_POST["cilindroS"];
+    $cilindroP = $_POST["cilindroP"];
     $codcilindroS = $_POST["codcilindroS"];
+    $cilindroS = $_POST["cilindroS"];
 
     $servico = $_POST["servico"];
     $numero = $_POST["numero"];
     $obsmk = $_POST["obsmk"];
 
+    $codolho = $_POST["codolho"];
     $inputolho = $_POST["inputolho"];
     $altolho = $_POST["altolho"];
-    $codolho = $_POST["codolho"];
-    $inputfechadurad = $_POST["inputfechadurad"];
     $codfechadurad = $_POST["codfechadurad"];
-    $inputbarra = $_POST["inputbarra"];
+    $inputfechadurad = $_POST["inputfechadurad"];
     $codbarra = $_POST["codbarra"];
+    $inputbarra = $_POST["inputbarra"];
     $coluna = $_POST["coluna"];
-    $manuall = $_POST["manuall"];
     $codmanuall = $_POST["codmanuall"];
+    $manuall = $_POST["manuall"];
 
-    $inputentr = $_POST["inputentr"];
     $codentr = $_POST["codentr"];
-    $inputcalco = $_POST["inputcalco"];
+    $inputentr = $_POST["inputentr"];
     $codcalco = $_POST["codcalco"];
-    $inputbiometria = $_POST["inputbiometria"];
+    $inputcalco = $_POST["inputcalco"];
     $codbiometria = $_POST["codbiometria"];
-    $digital = $_POST["digital"];
+    $inputbiometria = $_POST["inputbiometria"];
     $coddigital = $_POST["coddigital"];
+    $digital = $_POST["digital"];
 
 
     $perfil = $_POST["perfil"];
-    $capadobri = $_POST["capadobri"];
     $codcapadobri = $_POST["codcapadobri"];
-    $dobradica = $_POST["dobradica"];
+    $capadobri = $_POST["capadobri"];
     $coddobradica = $_POST["coddobradica"];
-    $borracha = $_POST["borracha"];
+    $dobradica = $_POST["dobradica"];
     $codborracha = $_POST["codborracha"];
+    $borracha = $_POST["borracha"];
 
     $tipoem = $_POST["tipoem"];
-    $codtipoem = $_POST["codtipoem"];
+    $codcamad = $_POST["codcamad"];
+    $camad = $_POST["camad"];
 
 
     $lag_bat = $_POST["lag_bat"];
     $tip_bat = $_POST["tip_bat"];
+    $corbat = $_POST["corbat"];
 
     $obs = $_POST["obs"];
-
-    $up1 = "UPDATE registros SET nome_cliente='$nome_cliente', talao='$talao', microsiga='$microsiga', data_entrada='$data_entrada',
-    data_previsao='$data_previsao', modelo='$modelo', largura='$largura', altura='$altura', lado='$lado', sentido='$sentido', acabint='$acabint',
-    acabext='$acabext', inputferragens='$inputferragens', cilindroP='$cilindroP', cilindroS='$cilindroS', servico='$servico', numero='$numero', obsmk='$obsmk',
-    inputolho='$inputolho', inputfechadurad='$inputfechadurad', inputbarra='$inputbarra', coluna='$coluna', manuall='$manuall', inputentr='$inputentr', inputcalco='$inputcalco', inputbiometria='$inputbiometria',
-    digital='$digital', perfil='$perfil', capadobri='$capadobri', dobradica='$dobradica', borracha='$borracha', tipoem='$tipoem', lag_bat='$lag_bat', tip_bat='$tip_bat', obs='$obs'
-    WHERE talao='$id' ";
-
-    $result1 = $conexao->query($up1);
-
     
-    if($up1 == true){
-        $up2 = "UPDATE codigos SET codferragens='$codferragens', codcilindroP='$codcilindroP', codcilindroS='$codcilindroS', codolho='$codolho',
-        codfechadurad='$codfechadurad', codbarra='$codbarra', codmanuall='$codmanuall', codentr='$codentr', codcalco='$codcalco', codbiometria='$codbiometria',
-        coddigital='$coddigital', codcapadobri='$codcapadobri', coddobradica='$coddobradica', codborracha='$codborracha', codtipoem='$codtipoem' ";
+    $resultado = "UPDATE registros SET talao='$talao', microsiga='$microsiga', nome_cliente='$nome_cliente',
+    data_entrada='$data_entrada', data_previsao='$data_previsao', modelo='$modelo', largura='$largura', altura='$altura', lado='$lado',
+    sentido='$sentido', codacabint='$codacabint', acabint='$acabint', codacabext='$codacabext', acabext='$acabext',
+    codferragens='$codferragens', inputferragens='$inputferragens', codcilindroP='$codcilindroP', cilindroP='$cilindroP',
+    codcilindroS='$codcilindroS', cilindroS='$cilindroS', servico='$servico', numero='$numero',
+    obsmk='$obsmk', codolho='$codolho', inputolho='$inputolho', altolho='$altolho', codfechadurad='$codfechadurad',
+    inputfechadurad='$inputfechadurad', codbarra='$codbarra', inputbarra='$inputbarra', coluna='$coluna', codmanuall='$codmanuall',
+    manuall='$manuall',codentr='$codentr',inputentr='$inputentr',codcalco='$codcalco',
+    inputcalco='$inputcalco', codbiometria='$codbiometria', inputbiometria='$inputbiometria', coddigital='$coddigital',
+    digital='$digital', perfil='$perfil', codcapadobri='$codcapadobri', capadobri='$capadobri', coddobradica='$coddobradica',
+    dobradica='$dobradica', codborracha='$codborracha', borracha='$borracha', tipoem='$tipoem', codcamad='$codcamad',
+    camad='$camad', lag_bat='$lag_bat', tip_bat='$tip_bat', corbat='$corbat', obs='$obs' WHERE talao='$id' ";
 
-        $result2 = $conexao->query($up2);
-    }
-
+    $conc = $conexao->query($resultado);
+    
 }
-    header('Location:Pesquisa.php');
+    header('Location:Cadastro.php');
 ?>

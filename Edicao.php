@@ -1,4 +1,6 @@
 <?php
+include_once("conexão.php");
+
 if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 {
     include_once("conexão.php");
@@ -14,8 +16,8 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
             while($dado = mysqli_fetch_assoc($result)){
                 
-                $nome_cliente = $dado["nome_cliente"];
                 $talao = $dado["talao"];
+                $nome_cliente = $dado["nome_cliente"];
                 $microsiga = $dado["microsiga"];
                 $data_entrada = $dado["data_entrada"];
                 $data_previsao = $dado["data_previsao"];
@@ -26,52 +28,54 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
                 $lado = $dado["lado"];
                 $sentido = $dado["sentido"];
             
+                $codacabint = $dado["codacabint"];
                 $acabint = $dado["acabint"];
+                $codacabext = $dado["codacabext"];
                 $acabext = $dado["acabext"];
             
-                $inputferragens = $dado["inputferragens"];
                 $codferragens = $dado["codferragens"];
-                $cilindroP = $dado["cilindroP"];
+                $inputferragens = $dado["inputferragens"];
                 $codcilindroP = $dado["codcilindroP"];
-                $cilindroS = $dado["cilindroS"];
+                $cilindroP = $dado["cilindroP"];
                 $codcilindroS = $dado["codcilindroS"];
+                $cilindroS = $dado["cilindroS"];
             
                 $servico = $dado["servico"];
                 $numero = $dado["numero"];
                 $obsmk = $dado["obsmk"];
             
+                $codolho = $dado["codolho"];
                 $inputolho = $dado["inputolho"];
                 $altolho = $dado["altolho"];
-                $codolho = $dado["codolho"];
-                $inputfechadurad = $dado["inputfechadurad"];
                 $codfechadurad = $dado["codfechadurad"];
-                $inputbarra = $dado["inputbarra"];
+                $inputfechadurad = $dado["inputfechadurad"];
                 $codbarra = $dado["codbarra"];
+                $inputbarra = $dado["inputbarra"];
                 $coluna = $dado["coluna"];
-                $manuall = $dado["manuall"];
                 $codmanuall = $dado["codmanuall"];
+                $manuall = $dado["manuall"];
             
-                $inputentr = $dado["inputentr"];
                 $codentr = $dado["codentr"];
-                $inputcalco = $dado["inputcalco"];
+                $inputentr = $dado["inputentr"];
                 $codcalco = $dado["codcalco"];
-                $inputbiometria = $dado["inputbiometria"];
+                $inputcalco = $dado["inputcalco"];
                 $codbiometria = $dado["codbiometria"];
-                $digital = $dado["digital"];
+                $inputbiometria = $dado["inputbiometria"];
                 $coddigital = $dado["coddigital"];
+                $digital = $dado["digital"];
             
             
                 $perfil = $dado["perfil"];
-                $capadobri = $dado["capadobri"];
                 $codcapadobri = $dado["codcapadobri"];
-                $dobradica = $dado["dobradica"];
+                $capadobri = $dado["capadobri"];
                 $coddobradica = $dado["coddobradica"];
-                $borracha = $dado["borracha"];
+                $dobradica = $dado["dobradica"];
                 $codborracha = $dado["codborracha"];
+                $borracha = $dado["borracha"];
             
-                $tipoem = $_POST["tipoem"];
-                $codcamad = $_POST["codcamad"];
-                $camad = $_POST["camad"];
+                $tipoem = $dado["tipoem"];
+                $codcamad = $dado["codcamad"];
+                $camad = $dado["camad"];
             
             
                 $lag_bat = $dado["lag_bat"];
@@ -83,9 +87,39 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
             }
 
         }else {
-            header('Location:Pesquisa.php'); }
+            header('Location:Cadastro.php'); }
 
     } 
+
+$mod = "SELECT * FROM produtos WHERE categoria = 'MODELO' ";
+$acab = "SELECT * FROM produtos WHERE categoria = 'ACABAMENTO' ";
+$fer = "SELECT * FROM produtos WHERE categoria = 'FERRAGENS' ";
+$cil = "SELECT * FROM produtos WHERE categoria = 'CILINDROS' ";
+$om = "SELECT * FROM produtos WHERE categoria = 'OLHO MÁGICO' ";
+$fa = "SELECT * FROM produtos WHERE categoria = 'FECHADURA ADICIONAL' ";
+$fe = "SELECT * FROM produtos WHERE categoria = 'FECHADURA ENTR' ";
+$lb = "SELECT * FROM produtos WHERE categoria = 'LEITOR BIOMETRICO' ";
+$tg = "SELECT * FROM produtos WHERE categoria = 'TECLADO DIGITAL' ";
+$cal = "SELECT * FROM produtos WHERE categoria = 'CALÇO' ";
+$ba = "SELECT * FROM produtos WHERE categoria = 'BARRA ANTIPANICO' ";
+$cd = "SELECT * FROM produtos WHERE categoria = 'CAPA DA DOBRADIÇA' ";
+$bor = "SELECT * FROM produtos WHERE categoria = 'BORRACHA' ";
+
+$conecmod = $conexao->query($mod);
+$conecacab = $conexao->query($acab);
+$conecfer = $conexao->query($fer);
+$coneccil = $conexao->query($cil);
+$conecom = $conexao->query($om);
+$conecfa = $conexao->query($fa);
+$conecfe = $conexao->query($fe);
+$coneclb = $conexao->query($lb);
+$conectg = $conexao->query($tg);
+$coneccal = $conexao->query($cal);
+$conecba = $conexao->query($ba);
+$coneccd = $conexao->query($cd);
+$conecbor = $conexao->query($bor);
+
+
 ?>
 
 
@@ -418,13 +452,13 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
             } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465" ||
             modelo.value == "467" || modelo.value == "468") && (acabint.value == "AÇO" || acabint.value == "PVC BRANCO" ||
             acabint.value == "PVC CINZA") && (acabext.value == "AÇO" || acabext.value == "PVC BRANCO" || acabext.value == "PVC CINZA")){
-                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+                cilindroP.setAttribute("value", "CIL 76 P.236E COM 5 CHAVES")
             
             } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465") &&
             (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
             acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
             acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
-                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+                cilindroP.setAttribute("value", "CIL 76 P.236E COM 5 CHAVES")
 
             } else if((modelo.value == "467" || modelo.value == "468" || modelo.value == "469" || modelo.value == "470" ||
             modelo.value == "470" || modelo.value == "471" || modelo.value == "472") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
@@ -456,29 +490,196 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
                 inputcalco.setAttribute("value", "")
 
             }
+            
+        }
 
-            if(tipoem.value == "CAIXA DE MADEIRA"){
-                camad.disabled = false
+        function clicar(){
+            var resgat = prompt("Digite o Talão")
+            var talaoft = document.getElementById("talaoft")
+            var talaoidi = document.getElementById("enedit")
+            var talaoeti = document.getElementById("talaoeti")
+            var talaopl = document.getElementById("talaopl")
 
-            } else {
-                camad.disabled = true
+
+            if(talaoft.value == ""){
+                talaoft.setAttribute("value", resgat)
+            }
+
+            if(talaoidi.value == ""){
+                talaoidi.setAttribute("value", resgat)
+            }
+
+            if(talaoeti.value == ""){
+                talaoeti.setAttribute("value", resgat)
+            }
+
+            if(talaopl.value == ""){
+                talaopl.setAttribute("value", resgat)
             }
 
         }
+
+        function comparar(){
+            var presgat = prompt("Digite a Data Inicial")
+            var dataini = document.getElementById("dataini")
+            
+
+            if(dataini.value == ""){
+                var convert1 = presgat.split('/').reverse().join('-')
+                dataini.setAttribute("value", convert1)
+
+            }
+
+            if(dataini != ""){
+                var sresgat = prompt("Digite a Data Final");
+                var convert2 = sresgat.split('/').reverse().join('-')
+                datafin.setAttribute("value", convert2)
+            }
+
+        }
+
+        function produto(){
+            var codprod = prompt("Digite o Código do Produto")
+            var codigo = document.getElementById("codigo")
+
+            if(codigo.value == ""){
+                codigo.setAttribute("value", codprod)
+            }
+        }
     </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto Mono'
+        }
+
+        body{
+            background-color: #BDB76B;
+        }
+
+        #carddados{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #carddados input{
+            display:inline-block;
+            border:0;
+            border-bottom: 2px solid #D2691E;
+            background-color:transparent;
+            outline: none;
+        }
+
+        #nome{
+            display:flex;
+            justify-content:end;
+            align-items:end
+
+        }
+
+        #cc{
+            width: 530px;
+        }
+
+        #dados{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #talao{
+            width:207px;
+        }
+
+        #linha1{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #linha2{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #linha3{
+            display:flex;
+            justify-content:space-around;
+        }
+
+        h3{
+            text-align:center;
+            margin-bottom:20px;
+            color:#D2691E
+
+        }
+        
+
+        .inputcadastro{
+            width: 100%;
+            display:inline-block;
+            border:0;
+            border-bottom: 2px solid #D2691E;
+            background-color: transparent;
+            outline: none;
+            min-width: 180px;
+            font-size: 16px;
+            transition: all .3s ease-out;
+            border-radius: 0;
+            margin-top:20px
+        }
+
+        h4{
+            text-align:center;
+            margin-bottom:20px;
+            color:#D2691E
+        }
+
+        .cads{
+            background-color:#ffffff80;
+            margin-top:20px;
+            padding-bottom:30px;
+            margin-bottom:20px;
+            border-radius: 6%
+        }
+
+        #obs{
+            background-color:#ffffff80;
+            padding-bottom:30px;
+            border-radius: 6%
+        }
+
+        #butfish{
+            display:flex;
+            justify-content:center;
+        }
+
+        #butfish button{
+            background:transparent;
+            background-color:#ffffff80;
+            border-color:#D2691E;
+            padding:15px;
+            width: 200px;
+            color:#D2691E;
+            font-size:10pt;
+            font-weight:bold;
+        }
+
+        #butfish button:hover{
+            background-color:#BDB76B;
+            color:#fff;
+        }
+
+    </style>
 </head>
 <body>
     <datalist id="mod">
-        <option>Telefonia</option>
-        <option>TelAlvenaria</option>
-        <option>463</option>
-        <option>465</option>
-        <option>467</option>
-        <option>468</option>
-        <option>469</option>
-        <option>470</option>
-        <option>471</option>
-        <option>472</option>
+    <?php while($dadomod = mysqli_fetch_assoc($conecmod)){ ?>
+        <option> <?php echo $dadomod['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="lag">
@@ -500,47 +701,32 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
     </datalist>
 
 
-    <datalist id="ladin">
-        <option>AÇO</option>
-        <option>PVC BRANCO</option>
-        <option>PVC CINZA</option>
-        <option>MDF CRÚ</option>
-        <option>PREPARADO P/PINTURA</option>
-        <option>FORMICA TX NOGAL</option>
-        <option>CURROPIXÁ</option>
-    </datalist>
+    <datalist id="acabamento">
+    <?php while($dadoacab = mysqli_fetch_assoc($conecacab)){ ?>
+        <option> <?php echo $dadoacab['descricao']?> </option>
 
-    <datalist id="ladex">
-        <option>AÇO</option>
-        <option>PVC BRANCO</option>
-        <option>PVC CINZA</option>
-        <option>MDF CRÚ</option>
-        <option>PREPARADO P/PINTURA</option>
-        <option>FORMICA TX NOGAL</option>
-        <option>CURROPIXÁ</option>
+    <?php } ?>
     </datalist>
 
 
     <datalist id="ferragens">
-        <option>FECHADURA PLASTICA</option>
-        <option>KIT FERRAGENS CR MxF</option>
-        <option>KIT FERRAGENS CR MxM</option>
-        <option>KIT ESPELHO TELEFONIA</option>
-        <option>PUXADOR</option>
+    <?php while($dadoferr = mysqli_fetch_assoc($conecfer)){ ?>
+        <option> <?php echo $dadoferr['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="cilindro">
-        <option>CIL 76 P.113</option>
-        <option>CIL 76 P.586E COM 3 CHAVES</option>
-        <option>CIL 76 P.236S COM 5 CHAVES</option>
-        <option>CIL 81 P.236S COM 5 CHAVES</option>
-        <option>CIL ENTR 70 P.236S COM 1 CHAVE</option>
-        <option>CIL ENTR 73 P.236S COM 1 CHAVE</option>
+    <?php while($dadocil = mysqli_fetch_assoc($coneccil)){ ?>
+        <option> <?php echo $dadocil['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
 
     <datalist id="mkserv">
         <option>UNIFICAÇÃO</option>
+        <option>MESTRAGEM</option>
     </datalist>
 
 
@@ -551,52 +737,73 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
 
 
     <datalist id="olho">
-        <option>OLHO MAGICO CR</option>
-        <option>OLHO MAGICO LP</option>
+    <?php while($dadoolho = mysqli_fetch_assoc($conecom)){ ?>
+        <option> <?php echo $dadoolho['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
 
-    <datalist id="fechadura">
-        <option>FECHADURA TRI-LOCK S/CILINDRO</option>
-        <option>FECHADURA M70</option>
+    <datalist id="fechadurad">
+    <?php while($dadofech = mysqli_fetch_assoc($conecfa)){ ?>
+        <option> <?php echo $dadofech['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="entr">
-        <option>BRANCO</option>
-        <option>PRETA</option>
+    <?php while($dadoentr = mysqli_fetch_assoc($conecfe)){ ?>
+        <option> <?php echo $dadoentr['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="biometria">
-        <option>LEITOR BIOMETRICO</option>
+    <?php while($dadobio = mysqli_fetch_assoc($coneclb)){ ?>
+        <option> <?php echo $dadobio['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="teclado">
-        <option>LEITOR DIGITAL</option>
+    <?php while($dadotec = mysqli_fetch_assoc($conectg)){ ?>
+        <option> <?php echo $dadotec['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="calco">
-        <option>CALÇO DE 01 a 03mm</option>
-        <option>CALÇO DE 04 a 08mm</option>
-        <option>CALÇO DE 09 a 12mm</option>
+    <?php while($dadocal = mysqli_fetch_assoc($coneccal)){ ?>
+        <option> <?php echo $dadocal['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
     <datalist id="barra">
-        <option>BARRA ANTIPANICO DORMA</option>
-        <option>BARRA ANTIPANICO TEKIN</option>
+    <?php while($dadobar = mysqli_fetch_assoc($conecba)){ ?>
+        <option> <?php echo $dadobar['descricao']?> </option>
+
+    <?php } ?>
     </datalist>
 
-
-    <datalist id="plasticos">
-        <option>BRANCO</option>
-        <option>CINZA</option>
-        <option>MARROM</option>
-    </datalist>
-
-    <datalist id="plasticosC">
+    <datalist id="perfil">
         <option>BRANCO</option>
         <option>MARROM</option>
     </datalist>
 
+    <datalist id="capadobr">
+    <?php while($dadocapadobr = mysqli_fetch_assoc($coneccd)){ ?>
+        <option> <?php echo $dadocapadobr['descricao']?> </option>
+
+    <?php } ?>
+    </datalist>
+
+    <datalist id="borracha">
+    <?php while($dadoborr = mysqli_fetch_assoc($conecbor)){ ?>
+        <option> <?php echo $dadoborr['descricao']?> </option>
+
+    <?php } ?>
+    </datalist>
 
     <datalist id="tipo">
         <option>MANTA</option>
@@ -608,109 +815,126 @@ if(isset($_POST["edit"]) && !empty($_POST["enedit"]))
         <option>150</option>
     </datalist>
 
-
     <form action="Update.php" method="POST">
-        <div id="nome">
-            <input type="text" placeholder="NOME DO CLIENTE" onchange="script()" name="nome_cliente" value="<?php echo $nome_cliente ?>">
+    <div id="carddados">
+            <div id="nome">
+            Nome Do Cliente: <input type="text" autocomplete="off" onchange="script()" width="20px" name="nome_cliente" id="cc" value="<?php echo $nome_cliente ?>">
+            </div>
+
+        
+            <div id="dados">
+                <div id="tami">
+                    Talão <input type="text"autocomplete="off" name="talao" id="talao" class="inputtm" value="<?php echo $talao ?>"><br>
+                    Microsiga <input type="text" autocomplete="off" class="inputtm" name="microsiga" value="<?php echo $microsiga ?>"><br>
+                </div>
+                <div id="datas">
+                    Data de Entrada <input type="date" name="data_entrada" value="<?php echo $data_entrada ?>"><br>
+                    Data de Previsão <input type="date" name="data_previsao" value="<?php echo $data_previsao ?>">
+                </div>
+            </div>
+        </div><hr>
+
+        <div id="linha1">
+            <div class="cads">
+                <h3>Medidas</h3><br>
+                <b><u>Modelo</u></b><br><input type="text" autocomplete="off" list="mod" onchange="script()" name="modelo" class="inputcadastro" id="modelo"value="<?php echo $modelo ?>"><br>
+                <b><u>Largura</u></b><input type="text" autocomplete="off" list="lag"  class="inputcadastro" name="largura"value="<?php echo $largura ?>"><br>
+                <b><u>Altura</u></b><br><input type="text" autocomplete="off" onchange="script()" id="altura" class="inputcadastro" name="altura" value="2085"value="<?php echo $altura ?>">><br>
+                <b><u>Lado de abertura</u></b><input type="text" autocomplete="off" onchange="script()" list="lad" class="inputcadastro" id="lado" name="lado"value="<?php echo $lado ?>"><br>
+                <b><u>Sentido de abertur</u></b><input type="text" autocomplete="off" list="sent" class="inputcadastro" name="sentido"value="<?php echo $sentido ?>">
+            </div>
+
+            <div class="cads">
+                <h3>Acabamento</h3><br>
+                <b><u>Acabamento Interno</u></b><input type="text" autocomplete="off" onchange="script()" list="acabamento" class="inputcadastro" id="acabint" name="acabint"  value="<?php echo $acabint ?>"><br>
+                <input type="hidden" name="codacabint" id="codacabint" value="<?php echo $codacabint ?>">
+                <b><u>Acabamento Externo</u></b><input type="text" autocomplete="off" onchange="script()" list="acabamento" class="inputcadastro" id="acabext" name="acabext"  value="<?php echo $acabext ?>"><br>
+                <input type="hidden" name="codacabext" id="codacabext" value="<?php echo $codacabext ?>">
+            </div>
+
+            <div class="cads">
+                <h3>Kits</h3><br>
+                <b><u>Ferragens</u></b><input type="text" autocomplete="off" list="ferragens" class="inputcadastro" onchange="script()" id="inputferragens" name="inputferragens" value="<?php echo $inputferragens ?>"><br>
+                <input type="hidden" name="codferragens" id="codferragens" value="<?php echo $codferragens ?>">
+                <b><u>Cilindro Principal</u></b><input type="text" autocomplete="off" list="cilindro" class="inputcadastro" onchange="script()" id="cilindroP" name="cilindroP" value="<?php echo $cilindroP ?>"><br>
+                <input type="hidden" name="codcilindroP" id="codcilindroP" value="<?php echo $codcilindroP ?>">
+                <b><u>Cilindro Secundário</u></b><input type="text" autocomplete="off" list="cilindro" class="inputcadastro" onchange="script()" id="cilindroS" name="cilindroS" value="<?php echo $cilindroS ?>"><br>
+                <input type="hidden" name="codcilindroS" id="codcilindroS" value="<?php echo $codcilindroS ?>">
+            </div>
         </div>
 
-        <div id="dado">
-            <input type="text" placeholder="TALÃO" name="talao" value="<?php echo $talao ?>" >
-            Data de Entrada <input type="date" name="data_entrada" value="<?php echo $data_entrada ?>"><br>
-            <input type="text" placeholder="MICROSIGA" name="microsiga" value="<?php echo $microsiga ?>">
-            Data de Previsão <input type="date" name="data_previsao" value="<?php echo $data_previsao ?>">
-        </div><hr>
+        <div id="linha2">
+            <div class="cads">
+                <h3>Master Key</h3><br>
+                <b><u>Tipo de Serviço</u></b><input type="text" autocomplete="off" list="mkserv" class="inputcadastro" id="servico" name="servico"  value="<?php echo $servico ?>"><br>
+                <b><u>Quantidade de Chaves</u></b><input type="text" autocomplete="off" class="inputcadastro" id="qtdk" name="numero" value="<?php echo $numero ?>"><br>
+                <b><u>Observação</u></b><input type="text" id="obsmk" autocomplete="off" class="inputcadastro" name="obsmk"  value="<?php echo $obsmk ?>"><br>
+            </div>
 
-        <div id="medida">
-            <u><h3>Medidas</h3></u>
-            Modelo <input type="text" list="mod" onchange="script()" name="modelo" id="modelo" value="<?php echo $modelo ?>"><br>
-            Largura <input type="text" list="lag" name="largura" value="<?php echo $largura ?>"><br>
-            Altura <input type="text" onchange="script()" id="altura" name="altura" value="<?php echo $altura ?>" ><br>
-            Lado de abertura <input type="text" onchange="script()" list="lad" id="lado" name="lado" value="<?php echo $lado ?>"><br>
-            Sentido de abertura<input type="text" list="sent" name="sentido" value="<?php echo $sentido ?>">
-        </div><hr>
+            <div class="cads">
+                <h3>Complementos</h3><br>
+                <b><u>Olho Mágico</u></b><input type="text" autocomplete="off" list="olho" class="inputcadastro" onchange="script()" id="inputolho" name="inputolho" value="<?php echo $inputolho ?>"><br>
+                <b><u>Altura do Olho</u></b><input type="text" autocomplete="off" class="inputcadastro" id="altolho" name="altolho" value="<?php echo $altolho ?>"><br>
+                <input type="hidden" name="codolho" id="codolho" value="<?php echo $codolho ?>">
+                <b><u>Fechadura Adicional</u></b><input type="text" autocomplete="off" list="fechadurad" class="inputcadastro" onchange="script()" id="inputfechadurad" name="inputfechadurad" value="<?php echo $inputfechadurad ?>"><br>
+                <input type="hidden" name="codfechadurad" id="codfechadurad" value="<?php echo $codfechadurad ?>">
+                <b><u>Barra Antipanico</u></b><input type="text" autocomplete="off" list="barra" class="inputcadastro" onchange="script()" id="inputbarra" name="inputbarra" value="<?php echo $inputbarra ?>"><br>
+                <input type="hidden" name="codbarra" id="codbarra" value="<?php echo $codbarra ?>">
+                <b><u>Coluna Central</u></b><input type="text" autocomplete="off" list="esch" class="inputcadastro" name="coluna"value="<?php echo $coluna ?>"><br>
+                <input type="hidden" name="manuall" id="manuall"value="<?php echo $manuall ?>">
+                <input type="hidden" id="codmanuall" name="codmanuall" value="<?php echo $codmanuall ?>">
+                
+                
+                <h4>Sistema Entr</h4><br>
+                <b><u>Fechadura Entr</u></b><input type="text" autocomplete="off" list="entr" class="inputcadastro" onchange="script()" id="inputentr" name="inputentr" value="<?php echo $inputentr ?>"><br>
+                <input type="hidden" name="codentr" id="codentr" value="<?php echo $codentr ?>">
+                <b><u>Calço</u></b><input type="text" list="calco" class="inputcadastro" autocomplete="off" onchange="script()" id="inputcalco" name="inputcalco" value="<?php echo $inputcalco ?>"><br>
+                <input type="hidden" name="codcalco" id="codcalco" value="<?php echo $codcalco ?>">
+                <b><u>Biometria</u></b><input type="text" autocomplete="off" list="biometria" class="inputcadastro" onchange="script()" id="inputbiometria" name="inputbiometria" value="<?php echo $inputbiometria ?>"><br>
+                <input type="hidden" name="codbiometria" id="codbiometria" value="<?php echo $inputbiometria ?>">
+                <b><u>Teclado</u></b><input type="text" list="teclado" class="inputcadastro" autocomplete="off" onchange="script()" id="digital" name="digital" value="<?php echo $digital ?>"><br>
+                <input type="hidden" name="coddigital" id="coddigital" value="<?php echo $coddigital ?>">
+            </div>
 
-        <div id="acabamento">
-            <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" onchange="script()" list="ladin" id="acabint" name="acabint" value="<?php echo $acabint ?>"><br>
-            Acabamento Externo <input type="text" onchange="script()" list="ladex" id="acabext" name="acabext" value="<?php echo $acabext ?>"><br>
-        </div><hr>
+            <div class="cads">
+                <h3>Plasticos</h3><br>
+                <b><u>Perfil</u></b><input type="text" autocomplete="off" list="perfil" class="inputcadastro" name="perfil" value="<?php echo $perfil ?>"><br>
+                <b><u>Kit de Capa da Dobradiça</u></b><input type="text" autocomplete="off" list="capadobr" class="inputcadastro" onchange="script()" id="capadobri" name="capadobri"  value="<?php echo $capadobri ?>"><br>
+                <input type="hidden" name="codcapadobri" id="codcapadobri"  value="<?php echo $codcapadobri ?>">
+                <input type="hidden" name="dobradica" id="dobradica"  value="<?php echo $dobradica ?>">
+                <input type="hidden" name="coddobradica" id="coddobradica"  value="<?php echo $coddobradica ?>">
+                <b><u>Borracha de Vedação</u></b><input type="text" autocomplete="off" list="borracha" class="inputcadastro" onchange="script()" id="borracha" name="borracha"  value="<?php echo $borracha ?>"><br>
+                <input type="hidden" name="codborracha" id="codborracha"  value="<?php echo $codborracha ?>">
+            </div>
+        </div>
 
-        <div id="kits">
-            <u><h3>Kits</h3></u>
-            Ferragens <input type="text" list="ferragens" onchange="script()" id="inputferragens" name="inputferragens" value="<?php echo $inputferragens ?>"><br>
-            <input type="text" name="codferragens" id="codferragens" value="<?php echo $codferragens?>">
-            Cilindro Principal <input type="text" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" value="<?php echo $cilindroP ?>"><br>
-            <input type="text" name="codcilindroP" id="codcilindroP" value="<?php echo $codcilindroP?>">
-            Cilindro Secundário <input type="text" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" value="<?php echo $cilindroS ?>"><br>
-            <input type="text" name="codcilindroS" id="codcilindroS" value="<?php echo $codcilindroS?>">
-        </div><hr><hr>
+        <div id="linha3">
+            <div class="cads">
+                <h3>Embalagens</h3><br>
+                <b><u>Embalagem</u></b><input type="text" autocomplete="off" list="tipo" class="inputcadastro" onchange="script()" id="tipoem"  name="tipoem"  value="<?php echo $tipoem ?>"><br>
+                <b><u>Caixa De Madeira</u></b><input type="text" autocomplete="off" class="inputcadastro" onchange="script()" name="camad" id="camad" value="<?php echo $camad ?>">
+                <input type="hidden" name="codcamad" id="codcamad" value="<?php echo $codcamad ?>">
+            </div>
 
-        <div id="master">
-            <u><h3>Master Key</h3></u>
-            Tipo de Serviço <input type="text" list="mkserv" id="servico" name="servico" value="<?php echo $servico ?>"><br>
-            Quantidade de Chaves <input type="text" id="qtdk" name="numero" value="<?php echo $numero ?>"><br>
-            Observação <input type="text" id="obsmk" name="obsmk" value="<?php echo $obsmk ?>"><br>
-        </div><hr>
-
-        <div id="complementos">
-            <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" list="olho" onchange="script()" id="inputolho" name="inputolho" value="<?php echo $inputolho?>">
-            Altura do Olho <input type="text" id="altolho" name="altolho" value="<?php echo $altolho?>"><br>
-            <input type="text" name="codolho" id="codolho" value="<?php echo $codolho ?>">
-            Fechadura Adicional <input type="text" list="fechadura" onchange="script()" id="inputfechadurad" name="inputfechadurad" value="<?php echo $inputfechadurad ?>"><br>
-            <input type="text" name="codfechadurad" id="codfechadurad" value="<?php echo $codfechadurad ?>">
-            Barra Antipanico <input type="text" list="barra" onchange="script()" id="inputbarra" name="inputbarra" value="<?php echo $inputbarra?>"><br>
-            <input type="text" name="codbarra" id="codbarra" value="<?php echo $codbarra?>">
-            Coluna Central <input type="text" list="esch" name="coluna" value="<?php echo $codbarra?>"><br>
-            <input type="text" name="manuall" id="manuall" value="<?php echo $manuall?>">
-            <input type="text" id="codmanuall" name="codmanuall" value="<?php echo $codmanuall?>">
-            
-            
-            <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" list="entr" onchange="script()" id="inputentr" name="inputentr" value="<?php echo $inputentr ?>"><br>
-            <input type="text" name="codentr" id="codentr" value="<?php echo $codentr?>">
-            Calço <input type="text" list="calco" onchange="script()" id="inputcalco" name="inputcalco" value="<?php echo $inputcalco?>"><br>
-            <input type="text" name="codcalco" id="codcalco" value="<?php echo $codcalco ?>">
-            Biometria <input type="text" list="biometria" onchange="script()" id="inputbiometria" name="inputbiometria" value="<?php echo $inputbiometria ?>"><br>
-            <input type="text" name="codbiometria" id="codbiometria" value="<?php echo $codbiometria ?>">
-            Teclado <input type="text" list="teclado" onchange="script()" id="digital" name="digital" value="<?php echo $codbiometria ?>"><br>
-            <input type="text" name="coddigital" id="coddigital" value="<?php echo $coddigital ?>">
-        </div><hr>
-
-        <div id="plasticos">
-            <u><h3>Plasticos</h3></u>
-            Perfil <input type="text" list="plasticos" name="perfil"value="<?php echo $perfil ?>"><br>
-            Kit de Capa da Dobradiça <input type="text" list="plasticosC" onchange="script()" id="capadobri" name="capadobri" value="<?php echo $capadobri ?>"><br>
-            <input type="text" name="codcapadobri" id="codcapadobri" value="<?php echo $codcapadobri ?>">
-            <input type="text" name="dobradica" id="dobradica" value="<?php echo $dobradica ?>">
-            <input type="text" name="coddobradica" id="coddobradica" value="<?php echo $coddobradica ?>">
-            Borracha de Vedação <input type="text" list="plasticos" onchange="script()" id="borracha" name="borracha" value="<?php echo $borracha ?>"><br>
-            <input type="text" name="codborracha" id="codborracha" value="<?php echo $codborracha ?>">
-        </div><hr><hr>
-
-        <div id="embalagem">
-            <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" list="tipo" onchange="script()" id="tipoem"  name="tipoem" value="<?php echo $tipoem ?>"><br>
-            Caixa De Madeira <input type="text" disabled onchange="script()" name="camad" id="camad" value="<?php echo $camad ?>">
-            <input type=text name="codcamad" id="codcamad" value="<?php echo $codcamad ?>">
-        </div><hr>
-
-        <div id="bat">
-            <u><h3>Batente</h3></u>
-            Laterais <input type="text" id="laterais" name="laterais" value="<?php echo $altura ?>"><br>
-            Lado <input type="text" id="batlad" name="batlad" value="<?php echo $lado ?>"><br>
-            Largura do Batente <input type="text" list="lb" name="lag_bat" value="<?php echo $lag_bat ?>"><br>
-            Cor do Batente<input type="text" name="corbat" id="corbat" value="<?php echo $corbat ?>"><br>
-            Tipo <input type="text" name="tip_bat" id="tip_bat" value="<?php echo $tip_bat ?>"><br>
+            <div class="cads">
+                <h3>Batente</h3><br>
+                <b><u>Laterais</u></b><input type="text" autocomplete="off" class="inputcadastro" id="laterais" name="laterais"  value="<?php echo $altura ?>"><br>
+                <b><u>Lado</u></b><input type="text" autocomplete="off" class="inputcadastro" id="batlad" name="batlad"  value="<?php echo $lado ?>"><br>
+                <b><u>Largura do Batente</u></b><input type="text" autocomplete="off" class="inputcadastro" list="lb" name="lag_bat" value="<?php echo $lag_bat ?>"><br>
+                <b><u>Cor do Batente</u></b><input type="text" autocomplete="off" class="inputcadastro" name="corbat" id="corbat" value="<?php echo $corbat ?>"><br>
+                <b><u>Tipo</u></b><input type="text" autocomplete="off" class="inputcadastro" name="tip_bat" id="tip_bat"  value="<?php echo $tip_bat ?>"><br>
+            </div>
         </div>
 
         <div id="obs">
-            Observação <input type="text" name="obs"value="<?php echo $obs ?>">
+            <h3>Observação</h3> <input type="text" autocomplete="off" class="inputcadastro" name="obs" id="obss" value="<?php echo $obs ?>">
         </div><br>
-        
+
         <input type="hidden" name="id" value="<?php echo $id ?>">
-        <button type="submit" name="update" id="update">Editar</button>
+        
+        <div id="butfish">
+            <button type="submit" name="update" id="update" >Editar</button>
+        <div>
     </form>
 </body>
 </html>

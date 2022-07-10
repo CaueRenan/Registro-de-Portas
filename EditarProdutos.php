@@ -17,7 +17,7 @@ if(isset($_POST['bcodi']) && !empty($_POST['codigo'])){
         }
 
     }else {
-        header('Locattion:Página-Principal.html');
+        header('Location:Cadastro.php');
     };
 }
 ?>

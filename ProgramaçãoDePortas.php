@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST["busca"]) && !empty($_POST["dataini"]) && !empty($_POST["datafin"]))
+if(isset($_POST["busca"]) && !empty($_POST["dataini"]) && !empty($_POST["datafin"])){
 
 include_once("conexão.php");
 
@@ -10,6 +10,10 @@ $datafin = $_POST["datafin"];
 $verificar = "SELECT * FROM registros WHERE data_entrada BETWEEN '$dataini' AND '$datafin'";
 
 $conc = $conexao->query($verificar);
+
+} else {
+    header('Location:Cadastro.php');
+}
 
 ?>
 
@@ -22,6 +26,9 @@ $conc = $conexao->query($verificar);
     <title>Programção de Portas</title>
 </head>
 <body>
+<a href="Cadastro.php">
+        <button id="bvolta">VOLTAR</button>
+    </a>
     <table>
         <tr>
             <th>PREVISÃO</th>

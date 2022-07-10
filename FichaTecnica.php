@@ -10,7 +10,7 @@ if(isset($_POST['imft']) && !empty($_POST['talaoft'])){
     $conec = $conexao->query($verificar);
 
     if(mysqli_num_rows($conec) < 1){
-        header('Location:Pesquisa.php');
+        header('Location:Cadastro.php');
     }
     
 }
@@ -34,6 +34,9 @@ if(isset($_POST['imft']) && !empty($_POST['talaoft'])){
     }
 </style>
 <body>
+    <a href="Cadastro.php">
+        <button id="bvolta">VOLTAR</button>
+    </a>
     <table>
         <?php
             while($dados = mysqli_fetch_assoc($conec)){

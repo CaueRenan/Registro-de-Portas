@@ -32,12 +32,23 @@ $conecbor = $conexao->query($bor);
 
 if(isset($_POST['submit']))
 {
-
     include_once("conexão.php");
 
     $talao = $_POST["talao"];
-    $nome_cliente = $_POST["nome_cliente"];
+
+    $compare = "SELECT * FROM registros WHERE talao = '$talao'";
+
+    $conccomp = $conexao->query($compare);
+
+    if($conccomp->num_rows > 0){
+        echo"<script>alert('Já existe um cadastro com o talão $talao, verifique se o mesmo está correto');</script>";
+
+    } else {
+    
+    include_once("conexão.php");
+
     $microsiga = $_POST["microsiga"];
+    $nome_cliente = $_POST["nome_cliente"];
     $data_entrada = $_POST["data_entrada"];
     $data_previsao = $_POST["data_previsao"];
 
@@ -102,6 +113,7 @@ if(isset($_POST['submit']))
     $corbat = $_POST["corbat"];
 
     $obs = $_POST["obs"];
+    
 
     $resultado = mysqli_query($conexao, "INSERT INTO registros (talao,microsiga,nome_cliente,data_entrada,data_previsao,modelo,largura,altura,
     lado,sentido,codacabint,acabint,codacabext,acabext,codferragens,inputferragens,codcilindroP,cilindroP,codcilindroS,cilindroS,servico,numero,
@@ -115,6 +127,8 @@ if(isset($_POST['submit']))
     '$codborracha','$borracha','$tipoem','$codcamad','$camad','$lag_bat','$tip_bat','$corbat','$obs')");
 
 }
+}
+
 ?>
 
 
@@ -447,13 +461,13 @@ if(isset($_POST['submit']))
             } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465" ||
             modelo.value == "467" || modelo.value == "468") && (acabint.value == "AÇO" || acabint.value == "PVC BRANCO" ||
             acabint.value == "PVC CINZA") && (acabext.value == "AÇO" || acabext.value == "PVC BRANCO" || acabext.value == "PVC CINZA")){
-                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+                cilindroP.setAttribute("value", "CIL 76 P.236E COM 5 CHAVES")
             
             } else if((modelo.value == "Telefonia" || modelo.value == "TelAlvenaria" || modelo.value == "463" || modelo.value == "465") &&
             (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
             acabint.value == "FORMICA TX NOGAL" || acabint.value == "CURROPIXÁ") && (acabext.value == "MDF CRÚ" || 
             acabext.value == "PREPARADO P/PINTURA" || acabext.value == "FORMICA TX NOGAL" || acabext.value == "CURROPIXÁ")){
-                cilindroP.setAttribute("value", "CIL 76 P.586E COM 3 CHAVES")
+                cilindroP.setAttribute("value", "CIL 76 P.236E COM 5 CHAVES")
 
             } else if((modelo.value == "467" || modelo.value == "468" || modelo.value == "469" || modelo.value == "470" ||
             modelo.value == "470" || modelo.value == "471" || modelo.value == "472") && (acabint.value == "MDF CRÚ" || acabint.value == "PREPARADO P/PINTURA" ||
@@ -485,16 +499,231 @@ if(isset($_POST['submit']))
                 inputcalco.setAttribute("value", "")
 
             }
+            
+        }
 
-            if(tipoem.value == "CAIXA DE MADEIRA"){
-                camad.disabled = false
+        function clicar(){
+            var resgat = prompt("Digite o Talão")
+            var talaoft = document.getElementById("talaoft")
+            var talaoidi = document.getElementById("enedit")
+            var talaoeti = document.getElementById("talaoeti")
+            var talaopl = document.getElementById("talaopl")
 
-            } else {
-                camad.disabled = true
+
+            if(talaoft.value == ""){
+                talaoft.setAttribute("value", resgat)
+            }
+
+            if(talaoidi.value == ""){
+                talaoidi.setAttribute("value", resgat)
+            }
+
+            if(talaoeti.value == ""){
+                talaoeti.setAttribute("value", resgat)
+            }
+
+            if(talaopl.value == ""){
+                talaopl.setAttribute("value", resgat)
             }
 
         }
+
+        function comparar(){
+            var presgat = prompt("Digite a Data Inicial")
+            var dataini = document.getElementById("dataini")
+            
+
+            if(dataini.value == ""){
+                var convert1 = presgat.split('/').reverse().join('-')
+                dataini.setAttribute("value", convert1)
+
+            }
+
+            if(dataini != ""){
+                var sresgat = prompt("Digite a Data Final");
+                var convert2 = sresgat.split('/').reverse().join('-')
+                datafin.setAttribute("value", convert2)
+            }
+
+        }
+
+        function produto(){
+            var codprod = prompt("Digite o Código do Produto")
+            var codigo = document.getElementById("codigo")
+
+            if(codigo.value == ""){
+                codigo.setAttribute("value", codprod)
+            }
+        }
     </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto Mono'
+        }
+
+        body{
+            background-color: #BDB76B;
+        }
+
+        #contener{
+            display:flex;
+            justify-content:space-evenly;
+            padding:20px
+        }
+
+        #ftimp{
+            display:flex;
+            align-content:start
+        }
+
+        #edipro{
+            display:flex;
+            align-content:start
+        }
+
+        #cadprod{
+            display:flex;
+            align-content:start
+        }
+
+        .card{
+            background-color:#ffffff80;
+            padding:20px;
+            border-radius: 6%
+        }
+
+        .butcab{
+            background:transparent;
+            border-color:#D2691E;
+            padding:15px;
+            width: 200px;
+            color:#D2691E;
+            font-size:10pt;
+            font-weight:bold;
+        }
+
+        .butcab:hover{
+            background-color:#BDB76B;
+            color:#fff;
+        }
+
+        #carddados{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #carddados input{
+            display:inline-block;
+            border:0;
+            border-bottom: 2px solid #D2691E;
+            background-color:transparent;
+            outline: none;
+        }
+
+        #nome{
+            display:flex;
+            justify-content:end;
+            align-items:end
+
+        }
+
+        #cc{
+            width: 530px;
+        }
+
+        #dados{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #talao{
+            width:207px;
+        }
+
+        #linha1{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #linha2{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        #linha3{
+            display:flex;
+            justify-content:space-around;
+        }
+
+        h3{
+            text-align:center;
+            margin-bottom:20px;
+            color:#D2691E
+
+        }
+        
+
+        .inputcadastro{
+            width: 100%;
+            display:inline-block;
+            border:0;
+            border-bottom: 2px solid #D2691E;
+            background-color: transparent;
+            outline: none;
+            min-width: 180px;
+            font-size: 16px;
+            transition: all .3s ease-out;
+            border-radius: 0;
+            margin-top:20px
+        }
+
+        h4{
+            text-align:center;
+            margin-bottom:20px;
+            color:#D2691E
+        }
+
+        .cads{
+            background-color:#ffffff80;
+            margin-top:20px;
+            padding-bottom:30px;
+            margin-bottom:20px;
+            border-radius: 6%
+        }
+
+        #obs{
+            background-color:#ffffff80;
+            padding-bottom:30px;
+            border-radius: 6%
+        }
+
+        #butfish{
+            display:flex;
+            justify-content:center;
+        }
+
+        #butfish button{
+            background:transparent;
+            background-color:#ffffff80;
+            border-color:#D2691E;
+            padding:15px;
+            width: 200px;
+            color:#D2691E;
+            font-size:10pt;
+            font-weight:bold;
+        }
+
+        #butfish button:hover{
+            background-color:#BDB76B;
+            color:#fff;
+        }
+
+    </style>
 </head>
 <body>
     <datalist id="mod">
@@ -637,118 +866,185 @@ if(isset($_POST['submit']))
         <option>150</option>
     </datalist>
 
-    <datalist id="hhh">
-    <?php while($conftalao = mysqli_fetch_assoc($conecseg)){ ?>
-        <option id="tt"><?php echo $conftalao["talao"] ?></option>
+    <div id="contener">
+        <div class="card">
+            <div id="ftimp">
+                <form action="FichaTecnica.php" method="POST">
+                    <input type="hidden" name="talaoft" id="talaoft" value=""> 
+                    <button name="imft" class="butcab" onclick="clicar()">FICHA TECNICA</button>
+                </form>
+            </div>
+        
+            <div id="etimp">
+                <form action="Etiqueta.php" method="POST">
+                    <input type="hidden" name="talaoeti" id="talaoeti" value=""> 
+                    <button name="imeti" class="butcab" onclick="clicar()">ETIQUETA</button>
+                </form>
+            </div>
+        
 
-    <?php } ?>
-    </datalist>
-
-
-    <form action="Cadastro.php" method="POST">
-        <div id="nome">
-            <input type="text" placeholder="NOME DO CLIENTE" onchange="script()" name="nome_cliente">
+            <div id="pickimp">
+                <form action="PickList.php" method="POST">
+                    <input type="hidden" name="talaopl" id="talaopl" value=""> 
+                    <button name="impl" class="butcab" onclick="clicar()">PICKLIST</button>
+                </form>
+            </div>
         </div>
 
-        <div id="dados">
-            <input type="text" placeholder="TALÃO" name="talao">
-            Data de Entrada <input type="date" name="data_entrada"><br>
-            <input type="text" placeholder="MICROSIGA" name="microsiga">
-            Data de Previsão <input type="date" name="data_previsao">
+
+
+        <div class="card">
+            <div id="edipro">
+                <form action="Edicao.php" method="POST">
+                    <input type="hidden" name="enedit" id="enedit" value="">
+                    <button href="Edicao.php" name="edit" class="butcab" onclick="clicar()">PESQUISA E EDIÇÃO DE PORTAS</button>
+                </form>
+            </div>
+
+            <div id="porpro">
+                <form action="ProgramaçãoDePortas.php" method="POST">
+                    <input type="hidden" name="dataini" id="dataini" value="">
+                    <input type="hidden" name="datafin" id="datafin" value="">
+                    <button href="ProgramaçãoDePortas.php" name="busca" class="butcab" onclick="comparar()">PROGRAMAÇÃO DE PORTAS</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div id="cadprod">
+                <a href="CadastroDeProduto.php">
+                    <button class="butcab" name="link">CADASTRO DE PRODUTOS</button>
+                </a>
+            </div>
+
+            <div id="ediprod">
+                <form action="EditarProdutos.php" method="POST">
+                    <input type="hidden" name="codigo" id="codigo">
+                    <button href="EditarProdutos.php" name="bcodi" class="butcab" onclick="produto()">EDIÇÃO DE PRODUTOS</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <form action="Cadastro.php" method="POST">
+    <div id="carddados">
+            <div id="nome">
+            Nome Do Cliente: <input type="text" autocomplete="off" onchange="script()" width="20px" name="nome_cliente" id="cc">
+            </div>
+
+        
+            <div id="dados">
+                <div id="tami">
+                    Talão <input type="text"autocomplete="off" name="talao" id="talao" class="inputtm"><br>
+                    Microsiga <input type="text" autocomplete="off" class="inputtm" name="microsiga"><br>
+                </div>
+                <div id="datas">
+                    Data de Entrada <input type="date" name="data_entrada"><br>
+                    Data de Previsão <input type="date" name="data_previsao">
+                </div>
+            </div>
         </div><hr>
 
-        <div id="medida">
-            <u><h3>Medidas</h3></u>
-            Modelo <input type="text" autocomplete="off" list="mod" onchange="script()" name="modelo" id="modelo"><br>
-            Largura <input type="text" autocomplete="off" list="lag" name="largura"><br>
-            Altura <input type="text" autocomplete="off" onchange="script()" id="altura" name="altura" value="2085"><br>
-            Lado de abertura <input type="text" autocomplete="off" onchange="script()" list="lad" id="lado" name="lado"><br>
-            Sentido de abertura<input type="text" autocomplete="off" list="sent" name="sentido">
-        </div><hr>
+        <div id="linha1">
+            <div class="cads">
+                <h3>Medidas</h3><br>
+                <b><u>Modelo</u></b><br><input type="text" autocomplete="off" list="mod" onchange="script()" name="modelo" class="inputcadastro" id="modelo"><br>
+                <b><u>Largura</u></b><input type="text" autocomplete="off" list="lag"  class="inputcadastro" name="largura"><br>
+                <b><u>Altura</u></b><br><input type="text" autocomplete="off" onchange="script()" id="altura" class="inputcadastro" name="altura" value="2085"><br>
+                <b><u>Lado de abertura</u></b><input type="text" autocomplete="off" onchange="script()" list="lad" class="inputcadastro" id="lado" name="lado"><br>
+                <b><u>Sentido de abertur</u></b><input type="text" autocomplete="off" list="sent" class="inputcadastro" name="sentido">
+            </div>
 
-        <div id="acabamento">
-            <u><h3>Acabamento</h3></u>
-            Acabamento Interno <input type="text" autocomplete="off" onchange="script()" list="acabamento" id="acabint" name="acabint" ><br>
-            <input type="text" name="codacabint" id="codacabint">
-            Acabamento Externo <input type="text" autocomplete="off" onchange="script()" list="acabamento" id="acabext" name="acabext" ><br>
-            <input type="text" name="codacabext" id="codacabext">
-        </div><hr>
+            <div class="cads">
+                <h3>Acabamento</h3><br>
+                <b><u>Acabamento Interno</u></b><input type="text" autocomplete="off" onchange="script()" list="acabamento" class="inputcadastro" id="acabint" name="acabint" ><br>
+                <input type="hidden" name="codacabint" id="codacabint">
+                <b><u>Acabamento Externo</u></b><input type="text" autocomplete="off" onchange="script()" list="acabamento" class="inputcadastro" id="acabext" name="acabext" ><br>
+                <input type="hidden" name="codacabext" id="codacabext">
+            </div>
 
-        <div id="kits">
-            <u><h3>Kits</h3></u>
-            Ferragens <input type="text" autocomplete="off" list="ferragens" onchange="script()" id="inputferragens" name="inputferragens" ><br>
-            <input type="text" name="codferragens" id="codferragens" >
-            Cilindro Principal <input type="text" autocomplete="off" list="cilindro" onchange="script()" id="cilindroP" name="cilindroP" ><br>
-            <input type="text" name="codcilindroP" id="codcilindroP" >
-            Cilindro Secundário <input type="text" autocomplete="off" list="cilindro" onchange="script()" id="cilindroS" name="cilindroS" ><br>
-            <input type="text" name="codcilindroS" id="codcilindroS" >
-        </div><hr><hr>
+            <div class="cads">
+                <h3>Kits</h3><br>
+                <b><u>Ferragens</u></b><input type="text" autocomplete="off" list="ferragens" class="inputcadastro" onchange="script()" id="inputferragens" name="inputferragens" ><br>
+                <input type="hidden" name="codferragens" id="codferragens" >
+                <b><u>Cilindro Principal</u></b><input type="text" autocomplete="off" list="cilindro" class="inputcadastro" onchange="script()" id="cilindroP" name="cilindroP" ><br>
+                <input type="hidden" name="codcilindroP" id="codcilindroP" >
+                <b><u>Cilindro Secundário</u></b><input type="text" autocomplete="off" list="cilindro" class="inputcadastro" onchange="script()" id="cilindroS" name="cilindroS" ><br>
+                <input type="hidden" name="codcilindroS" id="codcilindroS" >
+            </div>
+        </div>
 
-        <div id="master">
-            <u><h3>Master Key</h3></u>
-            Tipo de Serviço <input type="text" autocomplete="off" list="mkserv" id="servico" name="servico" ><br>
-            Quantidade de Chaves <input type="text" autocomplete="off" id="qtdk" name="numero"><br>
-            Observação <input type="text" id="obsmk" autocomplete="off" name="obsmk" ><br>
-        </div><hr>
+        <div id="linha2">
+            <div class="cads">
+                <h3>Master Key</h3><br>
+                <b><u>Tipo de Serviço</u></b><input type="text" autocomplete="off" list="mkserv" class="inputcadastro" id="servico" name="servico" ><br>
+                <b><u>Quantidade de Chaves</u></b><input type="text" autocomplete="off" class="inputcadastro" id="qtdk" name="numero"><br>
+                <b><u>Observação</u></b><input type="text" id="obsmk" autocomplete="off" class="inputcadastro" name="obsmk" ><br>
+            </div>
 
-        <div id="complementos">
-            <u><h3>Complementos</h3></u>
-            Olho Mágico <input type="text" autocomplete="off" list="olho" onchange="script()" id="inputolho" name="inputolho" >
-            Altura do Olho <input type="text" autocomplete="off" id="altolho" name="altolho" ><br>
-            <input type="text" name="codolho" id="codolho" >
-            Fechadura Adicional <input type="text" autocomplete="off" list="fechadurad" onchange="script()" id="inputfechadurad" name="inputfechadurad" ><br>
-            <input type="text" name="codfechadurad" id="codfechadurad" >
-            Barra Antipanico <input type="text" autocomplete="off" list="barra" onchange="script()" id="inputbarra" name="inputbarra" ><br>
-            <input type="text" name="codbarra" id="codbarra" >
-            Coluna Central <input type="text" autocomplete="off" list="esch" name="coluna"><br>
-            <input type="text" name="manuall" id="manuall">
-            <input type="text" id="codmanuall" name="codmanuall" >
-            
-            
-            <u><h4>Sistema Entr</h4></u>
-            Fechadura Entr <input type="text" autocomplete="off" list="entr" onchange="script()" id="inputentr" name="inputentr" ><br>
-            <input type="text" name="codentr" id="codentr" >
-            Calço <input type="text" list="calco" autocomplete="off" onchange="script()" id="inputcalco" name="inputcalco" ><br>
-            <input type="text" name="codcalco" id="codcalco" >
-            Biometria <input type="text" autocomplete="off" list="biometria" onchange="script()" id="inputbiometria" name="inputbiometria" ><br>
-            <input type="text" name="codbiometria" id="codbiometria" >
-            Teclado <input type="text" list="teclado" autocomplete="off" onchange="script()" id="digital" name="digital" ><br>
-            <input type="text" name="coddigital" id="coddigital" >
-        </div><hr>
+            <div class="cads">
+                <h3>Complementos</h3><br>
+                <b><u>Olho Mágico</u></b><input type="text" autocomplete="off" list="olho" class="inputcadastro" onchange="script()" id="inputolho" name="inputolho" ><br>
+                <b><u>Altura do Olho</u></b><input type="text" autocomplete="off" class="inputcadastro" id="altolho" name="altolho" ><br>
+                <input type="hidden" name="codolho" id="codolho" >
+                <b><u>Fechadura Adicional</u></b><input type="text" autocomplete="off" list="fechadurad" class="inputcadastro" onchange="script()" id="inputfechadurad" name="inputfechadurad" ><br>
+                <input type="hidden" name="codfechadurad" id="codfechadurad" >
+                <b><u>Barra Antipanico</u></b><input type="text" autocomplete="off" list="barra" class="inputcadastro" onchange="script()" id="inputbarra" name="inputbarra" ><br>
+                <input type="hidden" name="codbarra" id="codbarra" >
+                <b><u>Coluna Central</u></b><input type="text" autocomplete="off" list="esch" class="inputcadastro" name="coluna"><br>
+                <input type="hidden" name="manuall" id="manuall">
+                <input type="hidden" id="codmanuall" name="codmanuall" >
+                
+                
+                <h4>Sistema Entr</h4><br>
+                <b><u>Fechadura Entr</u></b><input type="text" autocomplete="off" list="entr" class="inputcadastro" onchange="script()" id="inputentr" name="inputentr" ><br>
+                <input type="hidden" name="codentr" id="codentr" >
+                <b><u>Calço</u></b><input type="text" list="calco" class="inputcadastro" autocomplete="off" onchange="script()" id="inputcalco" name="inputcalco" ><br>
+                <input type="hidden" name="codcalco" id="codcalco" >
+                <b><u>Biometria</u></b><input type="text" autocomplete="off" list="biometria" class="inputcadastro" onchange="script()" id="inputbiometria" name="inputbiometria" ><br>
+                <input type="hidden" name="codbiometria" id="codbiometria" >
+                <b><u>Teclado</u></b><input type="text" list="teclado" class="inputcadastro" autocomplete="off" onchange="script()" id="digital" name="digital" ><br>
+                <input type="hidden" name="coddigital" id="coddigital" >
+            </div>
 
-        <div id="plasticos">
-            <u><h3>Plasticos</h3></u>
-            Perfil <input type="text" autocomplete="off" list="perfil" name="perfil"><br>
-            Kit de Capa da Dobradiça <input type="text" autocomplete="off" list="capadobr" onchange="script()" id="capadobri" name="capadobri" ><br>
-            <input type="text" name="codcapadobri" id="codcapadobri" >
-            <input type="text" name="dobradica" id="dobradica" >
-            <input type="text" name="coddobradica" id="coddobradica" >
-            Borracha de Vedação <input type="text" autocomplete="off" list="borracha" onchange="script()" id="borracha" name="borracha" ><br>
-            <input type="text" name="codborracha" id="codborracha" >
-        </div><hr><hr>
+            <div class="cads">
+                <h3>Plasticos</h3><br>
+                <b><u>Perfil</u></b><input type="text" autocomplete="off" list="perfil" class="inputcadastro" name="perfil"><br>
+                <b><u>Kit de Capa da Dobradiça</u></b><input type="text" autocomplete="off" list="capadobr" class="inputcadastro" onchange="script()" id="capadobri" name="capadobri" ><br>
+                <input type="hidden" name="codcapadobri" id="codcapadobri" >
+                <input type="hidden" name="dobradica" id="dobradica" >
+                <input type="hidden" name="coddobradica" id="coddobradica" >
+                <b><u>Borracha de Vedação</u></b><input type="text" autocomplete="off" list="borracha" class="inputcadastro" onchange="script()" id="borracha" name="borracha" ><br>
+                <input type="hidden" name="codborracha" id="codborracha" >
+            </div>
+        </div>
 
-        <div id="embalagem">
-            <u><h3>Embalagens</h3></u>
-            Embalagem <input type="text" autocomplete="off" list="tipo" onchange="script()" id="tipoem"  name="tipoem" ><br>
-            Caixa De Madeira <input type="text" autocomplete="off" disabled onchange="script()" name="camad" id="camad">
-            <input type=text name="codcamad" id="codcamad">
+        <div id="linha3">
+            <div class="cads">
+                <h3>Embalagens</h3><br>
+                <b><u>Embalagem</u></b><input type="text" autocomplete="off" list="tipo" class="inputcadastro" onchange="script()" id="tipoem"  name="tipoem" ><br>
+                <b><u>Caixa De Madeira</u></b><input type="text" autocomplete="off" class="inputcadastro" onchange="script()" name="camad" id="camad">
+                <input type="hidden" name="codcamad" id="codcamad">
+            </div>
 
-        </div><hr>
-
-        <div id="bat">
-            <u><h3>Batente</h3></u>
-            Laterais <input type="text" autocomplete="off" id="laterais" name="laterais" ><br>
-            Lado <input type="text" autocomplete="off" id="batlad" name="batlad" ><br>
-            Largura do Batente <input type="text" autocomplete="off" list="lb" name="lag_bat"><br>
-            Cor do Batente<input type="text" autocomplete="off" name="corbat" id="corbat"><br>
-            Tipo <input type="text" autocomplete="off" name="tip_bat" id="tip_bat" ><br>
+            <div class="cads">
+                <h3>Batente</h3><br>
+                <b><u>Laterais</u></b><input type="text" autocomplete="off" class="inputcadastro" id="laterais" name="laterais" ><br>
+                <b><u>Lado</u></b><input type="text" autocomplete="off" class="inputcadastro" id="batlad" name="batlad" ><br>
+                <b><u>Largura do Batente</u></b><input type="text" autocomplete="off" class="inputcadastro" list="lb" name="lag_bat"><br>
+                <b><u>Cor do Batente</u></b><input type="text" autocomplete="off" class="inputcadastro" name="corbat" id="corbat"><br>
+                <b><u>Tipo</u></b><input type="text" autocomplete="off" class="inputcadastro" name="tip_bat" id="tip_bat" ><br>
+            </div>
         </div>
 
         <div id="obs">
-            Observação <input type="text" autocomplete="off" name="obs">
+            <h3>Observação</h3> <input type="text" autocomplete="off" class="inputcadastro" name="obs" id="obss">
         </div><br>
-        
-        <button type="submit"  name="submit" id="botoes" >Cadastrar</button>
+        <div id="butfish">
+            <button type="submit"  name="submit" id="botoes" >Cadastrar</button>
+        <div>
     </form>
 </body>
 </html>
